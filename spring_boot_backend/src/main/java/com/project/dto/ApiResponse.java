@@ -1,4 +1,4 @@
-package com.project.dto;
+package com.project.DTO;
 
 import java.time.LocalDateTime;
 

@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.project.dao.RegisterDao;
+import com.project.Dao.RegisterDao;
 import com.project.entities.Register;
 
 
