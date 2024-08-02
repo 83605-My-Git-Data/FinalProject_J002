@@ -1,4 +1,4 @@
-package com.project.DTO;
+package com.project.dto;
 
 
 
@@ -31,19 +31,18 @@ import lombok.Getter;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
-@ToString
 
-	public class Registerrequest {
+
+	public class registerDto {
 		
 		
 	
 		
-		@NotEmpty(message = "firstname is mandatory field")
-		private  String firstname;
+		@NotEmpty(message = "first name is mandatory")
+		private  String firstName;
 		
-		@NotEmpty(message = "firstname is mandatory field")
-		private String lastname;
+		@NotEmpty(message = "last name is mandatory")
+		private String lastName;
 		
 		@Email(message="invalid email format")
 		@NotEmpty(message = "email can not be null")
@@ -51,8 +50,8 @@ import lombok.Getter;
 		private String email;
 		
 		
-		@NotEmpty(message = "phoneno can not empty")
-		private String phoneno;
+		@NotEmpty(message = "phone number cannot be empty")
+		private String phoneNo;
 	
 		@NotEmpty(message="password can not empty")
 		private String password;
@@ -64,10 +63,6 @@ import lombok.Getter;
 	
 		private Role role;
 		
-		private LocalDateTime createdTime;
-		
-		private String ExtensionColumn;
-
 	
 		
 		
