@@ -43,6 +43,7 @@ public class SecurityConfig {
                 authorizeRequests(requests -> requests
                 .antMatchers("/signup" ,"/login",
                         "/v*/api-doc*/**", "/swagger-ui/**").permitAll()
+                
                 // only required for JS clnts (react / angular) : for the pre flight requests
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated())

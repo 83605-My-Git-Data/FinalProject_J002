@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.dto.ApiResponse;
+import com.project.DTO.ApiResponse;
 
-import com.project.dto.registerDto;
+import com.project.DTO.registerDto;
 import com.project.service.RegisterService;
 
 
