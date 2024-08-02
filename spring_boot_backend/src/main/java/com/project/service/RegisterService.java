@@ -1,14 +1,14 @@
 package com.project.service;
 
-import com.project.DTO.ApiResponse;
-import com.project.DTO.Registerrequest;
+import com.project.dto.ApiResponse;
+import com.project.dto.registerDto;
 
 
 
 
 public interface  RegisterService {
 	
-	ApiResponse signup(Registerrequest register);
+	ApiResponse signUp(registerDto register);
 	
 	
 	
