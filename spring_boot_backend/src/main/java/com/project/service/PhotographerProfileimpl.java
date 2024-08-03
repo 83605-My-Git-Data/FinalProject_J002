@@ -16,6 +16,7 @@ import com.project.dao.RegisterDao;
 import com.project.custom_exceptions.ResourceNotFoundException;
 import com.project.entities.Photographer_Profile;
 import com.project.entities.Register;
+import com.project.entities.Role;
 
 
 @Service
@@ -43,12 +44,26 @@ public class PhotographerProfileimpl implements PhotographerProfileService {
 		
 		Register register=registerDao.findById(dto.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User not found"));
 		
-		if(!register.getRole().equals("ROLE_PHOTOGRAPHER"))
-		{
-			 throw new RuntimeException("User is not a photographer");
-			
-			
-		}
+		System.out.println("role: "+register.getRole());
+		
+		
+		
+		
+		 Role role = register.getRole();
+		    System.out.println("Retrieved role: " + role);
+		    
+		    if (role == null || role != Role.ROLE_PHOTOGRAPHER) {
+		        throw new RuntimeException("User is not a photographer");
+		    }
+		
+		
+		
+//		if(!register.getRole().equals("ROLE_PHOTOGRAPHER   "))
+//		{
+//			 throw new RuntimeException("User is not a photographer");
+//			
+//			
+//		}
 		try {
 		
 		Photographer_Profile profile=mapper.map(dto, Photographer_Profile.class);
