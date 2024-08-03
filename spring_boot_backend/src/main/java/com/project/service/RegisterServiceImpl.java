@@ -8,9 +8,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.project.Dao.RegisterDao;
-import com.project.DTO.ApiResponse;
-import com.project.DTO.registerDto;
+import com.project.dao.RegisterDao;
+import com.project.dto.ApiResponse;
+import com.project.dto.registerDto;
 import com.project.entities.Register;
 
 

@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.DTO.ApiResponse;
-import com.project.DTO.CategoriesDTO;
+import com.project.dto.ApiResponse;
+import com.project.dto.CategoriesDTO;
 import com.project.service.CategoriesService;
 
 @RestController
@@ -16,14 +16,14 @@ import com.project.service.CategoriesService;
 public class CategoriesController {
 	
 	@Autowired
-	CategoriesService categoriesService;
+	CategoriesService categoriesservice;
 	
 	
 	@PostMapping
 	public ResponseEntity<?> PostCategories(CategoriesDTO DTO)
 	{
 		try {
-			return ResponseEntity.status(HttpStatus.CREATED).body(categoriesService.AddCategories(DTO));
+			return ResponseEntity.status(HttpStatus.CREATED).body(categoriesservice. AddCategories(DTO));
 		} catch (RuntimeException e)
 		{
 			System.out.println(e);

@@ -1,7 +1,7 @@
 package com.project.service;
 
-import com.project.DTO.ApiResponse;
-import com.project.DTO.PhotographerProfileDTO;
+import com.project.dto.ApiResponse;
+import com.project.dto.PhotographerProfileDTO;
 
 
 public interface PhotographerProfileService {

@@ -1,7 +1,7 @@
 package com.project.service;
 
-import com.project.DTO.ApiResponse;
-import com.project.DTO.registerDto;
+import com.project.dto.ApiResponse;
+import com.project.dto.registerDto;
 
 
 

@@ -6,9 +6,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.DTO.ApiResponse;
-import com.project.DTO.CategoriesDTO;
-import com.project.Dao.CategoriesDao;
+import com.project.dto.ApiResponse;
+import com.project.dto.CategoriesDTO;
+import com.project.dao.CategoriesDao;
 import com.project.entities.Categories;
 
 
@@ -19,7 +19,7 @@ public class CategoriesServiceImpl  implements CategoriesService{
 	
 	
 	@Autowired
-	public CategoriesDao categoriesDao;
+	public CategoriesDao categoriesdao;
 	
 	@Autowired
 	public ModelMapper mapper;
@@ -31,7 +31,7 @@ public class CategoriesServiceImpl  implements CategoriesService{
 		
 		Categories categories=mapper.map(DTO, Categories.class);
 		
-		categoriesDao.save(categories);
+		categoriesdao.save(categories);
 		return new ApiResponse(message);
 	}
 	

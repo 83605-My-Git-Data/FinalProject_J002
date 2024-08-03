@@ -9,10 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.DTO.ApiResponse;
-import com.project.DTO.PhotographerProfileDTO;
-import com.project.Dao.PhotographerProfileDao;
-import com.project.Dao.RegisterDao;
+import com.project.dto.ApiResponse;
+import com.project.dto.PhotographerProfileDTO;
+import com.project.dao.PhotographerProfileDao;
+import com.project.dao.RegisterDao;
 import com.project.custom_exceptions.ResourceNotFoundException;
 import com.project.entities.Photographer_Profile;
 import com.project.entities.Register;

@@ -11,8 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.DTO.ApiResponse;
-import com.project.DTO.signInDto;
+import com.project.dto.ApiResponse;
+import com.project.dto.signInDto;
 import com.project.entities.Register;
 import com.project.jwt.JwtUtility;
 import com.project.service.LogInService;

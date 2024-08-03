@@ -1,7 +1,7 @@
 package com.project.service;
 
-import com.project.DTO.ApiResponse;
-import com.project.DTO.signInDto;
+import com.project.dto.ApiResponse;
+import com.project.dto.signInDto;
 
 public interface LogInService {
 	ApiResponse signIn(signInDto signInDto);
