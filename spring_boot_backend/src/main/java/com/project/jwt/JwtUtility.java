@@ -56,10 +56,13 @@ public class JwtUtility implements Serializable {
         Register userPrincipal = (Register) authentication.getPrincipal();
         
         System.out.println("key used to sign in: "+key);
-        
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("id", userPrincipal.getId());
+        claims.put("Role", userPrincipal.getRole());// id of user is stored
         
         // JWT: userName, issued at, exp date, digital signature (does not typically contain password, can contain authorities)
         return Jwts.builder() // JWTs: a Factory class used to create JWT tokens
+        		.setClaims(claims)
                 .setSubject(userPrincipal.getEmail()) // Setting subject part of the token (typically user name/email)
                 .setIssuedAt(new Date()) // Sets the JWT Claims iat (issued at) value of current date
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)) // Sets the JWT Claims exp (expiration) value
