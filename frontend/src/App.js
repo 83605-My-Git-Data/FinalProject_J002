@@ -6,6 +6,9 @@ import Home from './screens/Home'
 import Category from './screens/Category'
 import PhotographerProfile from './screens/PhotographerProfile'
 import PhotographerPhotos from './screens/PhotographerPhotos'
+import Booking from './screens/Booking';
+import BookingConfirm from './screens/BookingConfirm';
+import Appointments from './screens/Appointments';
 
 function App() {
   return (
@@ -18,7 +21,14 @@ function App() {
         <Route path="/photographer-profile" element={<PhotographerProfile />} />
         <Route path="/category/:categoryName" element={<Category />} />
         <Route path="/photographer/:photographerId/photos" element={<PhotographerPhotos />} />
+        {/* <Route path="/" element={<Booking/>} /> */}
+        <Route path="/booking" element={<Booking />} />
+         <Route path="/booking-confirmation" element={<BookingConfirm/>} ></Route>
+         <Route path="/appointments" element={<Appointments />}> </Route>
+         {/* Add new route */}
+         
       </Routes>
+       
       <ToastContainer />
     </div>
   )

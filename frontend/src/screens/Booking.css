@@ -1,0 +1,39 @@
+/* src/screens/BookingConfirmation.css */
+
+
+.booking-confirmation {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .booking-confirmation h1 {
+    margin-bottom: 20px;
+  }
+  
+  .booking-confirmation form div {
+    margin-bottom: 15px;
+  }
+  
+  .booking-confirmation label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .booking-confirmation input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .booking-confirmation .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+  
+  
