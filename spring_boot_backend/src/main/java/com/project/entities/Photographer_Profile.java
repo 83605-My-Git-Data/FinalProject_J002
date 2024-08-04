@@ -20,12 +20,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Setter 
 @Getter
 @NoArgsConstructor 
 @AllArgsConstructor
+@ToString
 @Table(name="photographerprofile")
 
 public class Photographer_Profile {
