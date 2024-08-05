@@ -1,9 +1,8 @@
 package com.project.dto;
 
-
-
-
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.project.entities.Experience;
 
@@ -11,31 +10,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-@Setter
+
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+public class ExperienceDTO {
 
-public class PhotographerProfileDTO {
 	
-	
-	
-	private Long userId;
 
-	@NotEmpty(message = "Experience level is mandatory field")
+	@NotNull(message = "Experience level is mandatory field")
 	private Experience ExperienceLevel;
-	
-	
-	private String profilePhoto;
-	
-	private String Bio;
-	
-	
-	
-	
-	
-
 }

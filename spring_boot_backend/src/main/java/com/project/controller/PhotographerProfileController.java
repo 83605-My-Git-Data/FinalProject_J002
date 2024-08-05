@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -19,12 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.dto.PhotographerProfileDTO;
+
 import com.project.service.PhotographerProfileService;
 
 
 
 import com.project.dto.ApiResponse;
+import com.project.dto.BioDTO;
+import com.project.dto.ExperienceDTO;
 
 
 @RestController
@@ -40,22 +44,40 @@ public class PhotographerProfileController {
 	@Autowired
 	public PhotographerProfileService photographerProfileService;
 	
-	@PostMapping
-	public ResponseEntity<?> createphotographerprofile(@RequestBody PhotographerProfileDTO dto)
-	{
+	
+	
+	@PostMapping("/updateBio/{userId}")
+	public ResponseEntity<?> updateBio(@RequestBody @Valid BioDTO bioDTO,@PathVariable Long userId ){
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(photographerProfileService.updateBio(userId, bioDTO));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(e.getMessage()));		
+			
+	   }
+	}
+	
+	
+	
+	@PostMapping("/updateExperienceLevel/{userId}")
+	public ResponseEntity<?> updateExperince (@RequestBody @Valid ExperienceDTO experienceDTO,@PathVariable Long userId){
 		
 		try {
-			return ResponseEntity.status(HttpStatus.CREATED)
-					.body(photographerProfileService.createorupdateprofile(dto));
-		}
-		catch(Exception e)
-		{
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(e.getMessage()));
-		}
-		
+			return ResponseEntity.status(HttpStatus.OK).body(photographerProfileService.updateExperienceLevel(userId, experienceDTO));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(e.getMessage()));		
+			
+	   }
 		
 	}
-	   @PostMapping("/{userId}/uploadProfilePic")
+	
+	
+	
+	
+	
+	
+	
+	
+	   @PostMapping("/uploadProfilePic/{userId}")
 	    public ResponseEntity<String> uploadProfilePic(@PathVariable Long userId,
 	                                                   @RequestParam("file") MultipartFile file) 
 	   {
@@ -85,6 +107,9 @@ public class PhotographerProfileController {
          return new ResponseEntity<>("File upload failed: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
      }
  }
+	   
+	   
+	   
 	
 	
 
