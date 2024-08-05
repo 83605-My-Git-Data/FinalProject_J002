@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
  import { toast } from 'react-toastify'
+ import { login } from '../services/admin'
+import { jwtDecode  }from 'jwt-decode'
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -10,18 +12,59 @@ function Login() {
   
     // get navigation hook
     const navigate = useNavigate()
-  
-    const onLogin = () => {
-      if (email.length == 0) {
-        toast.error('Please enter email')
-      } else if (password.length == 0) {
-        toast.error('Please enter password')
+
+
+
+
+
+
+    const onLogin = async () => {
+      if (email.length === 0) {
+        toast.error('Please enter email');
+      } else if (password.length === 0) {
+        toast.error('Please enter password');
       } else {
-        // call login API and check its success
-        // go to home screen
-        navigate('/home')
+        try {
+          
+          const result = await login(email, password);
+    
+          
+    
+      
+          if (result.jwt && result.email) {
+            
+             sessionStorage.setItem('name', result.email);
+            sessionStorage.setItem('token', result.jwt);
+            const decodedToken = jwtDecode(result.jwt);
+
+            
+            if(decodedToken.Role == "ROLE_PHOTOGRAPHER"){
+
+                // ISKO PHOTOGRAPHER PROFILE PE ROUTE KARO
+
+              navigate('/home');
+              
+
+            }
+            else if(decodedToken.Role == "ROLE_USER"){
+
+               // ISKO USER PAGE PE ROUTE KARO
+
+               
+
+            }
+           
+          } else {
+            
+            toast.error('Login failed. Please try again.');
+          }
+        } catch (error) {
+          console.error("Error during login:", error);
+          toast.error('An error occurred during login.');
+        }
       }
-    }
+    };
+    
   
     return (
       <div>

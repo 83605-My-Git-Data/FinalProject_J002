@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.dao.PhotographerProfileDao;
 import com.project.dto.ApiResponse;
+import com.project.dto.JwtResponceDTO;
 import com.project.dto.signInDto;
 import com.project.entities.Photographer_Profile;
 import com.project.entities.Register;
@@ -74,6 +75,8 @@ public class LogInController {
 		   
 		   String role = claims.get("Role", String.class);
 		   
+		   String nameOfUser = claims.get("Name", String.class);
+		   System.out.println(nameOfUser);
 		   
 		  if("ROLE_PHOTOGRAPHER".equals(role)) {
 			  
@@ -86,12 +89,14 @@ public class LogInController {
 	            }		  
 			  
 		  }
+		  
+		  JwtResponceDTO jwtResponceDTO = new JwtResponceDTO(jwt, nameOfUser);
 			
-			return new ResponseEntity<>(jwt,HttpStatus.OK);
+			return new ResponseEntity<>(jwtResponceDTO,HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(e.getMessage()));
 		}
-		
+		 
 		
 	}
 	

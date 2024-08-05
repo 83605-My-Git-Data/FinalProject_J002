@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { signUp } from '../services/user-service'
+import { register } from '../services/admin'
 
 function Register() {
   const [Firstname, setFirstName] = useState('')
@@ -10,11 +10,11 @@ function Register() {
   const [Phoneno, setPhoneno] = useState('')
   const [Password, setPassword] = useState('')
   const [Gender, setGender] = useState('')
-  const [Role, setRole] = useState('')
+  
 
   const navigate = useNavigate()
 
-  const onRegister = (role) => {
+    const onRegisterPhotographer =  async (role) => {
     if (Firstname.length === 0) {
       toast.error('Please enter first name')
     } else if (Lastname.length === 0) {
@@ -27,24 +27,51 @@ function Register() {
       toast.error('Please enter password')
     } else if (Gender.length === 0) {
       toast.error('Please select gender')
-    } else if (Role.length === 0) {
-      toast.error('Please select role')
-    } else {
-      toast.success(`Successfully registered as a new ${role}`)
-      if (role === 'user') {
-        navigate('/login')
-      } else if (role === 'photographer') {
-        navigate('/login')
-      }
-    }
-    signUp().then((Response)=> {
-      console.log(Response)
-      console.log("success log");
-    }).catch((error)=>{
-      console.log(error)
-      console.log("Error Log")
+    } else{
 
-    });
+
+         const result =  await register(Firstname,Lastname,Email,Phoneno,Password,Gender,role)
+         console.log("gender: "+Gender);
+         if (result['message'] === 'registered successfully') {
+          toast.success('Successfully registered a new user')
+          navigate('/login')
+        } else {
+          toast.error(result['error'])
+        }
+
+
+
+    }
+  }
+
+
+  const onRegisterUser =  async (role) => {
+    if (Firstname.length === 0) {
+      toast.error('Please enter first name')
+    } else if (Lastname.length === 0) {
+      toast.error('Please enter last name')
+    } else if (Email.length === 0) {
+      toast.error('Please enter email')
+    } else if (Phoneno.length === 0) {
+      toast.error('Please enter phone number')
+    } else if (Password.length === 0) {
+      toast.error('Please enter password')
+    } else if (Gender.length === 0) {
+      toast.error('Please select gender')
+    } else{
+
+
+         const result =  await register(Firstname,Lastname,Email,Phoneno,Password,Gender,role)
+         if (result['message'] === 'registered successfully') {
+          toast.success('Successfully registered a new user')
+          navigate('/login')
+        } else {
+          toast.error(result['error'])
+        }
+
+
+
+    }
   }
 
   return (
@@ -101,30 +128,19 @@ function Register() {
                 className='form-control'
               >
                 <option value=''>Select Gender</option>
-                <option value='male'>Male</option>
-                <option value='female'>Female</option>
-                <option value='other'>Other</option>
-              </select>
-            </div>
-            <div className='mb-3'>
-              <label htmlFor=''>Role</label>
-              <select
-                onChange={(e) => setRole(e.target.value)}
-                className='form-control'
-              >
-                <option value=''>Select Role</option>
-                <option value='user'>User</option>
-                <option value='photographer'>Photographer</option>
+                <option value='MALE'>Male</option>
+                <option value='FEMALE'>Female</option>
+                <option value='OTHER'>Other</option>
               </select>
             </div>
             <div className='mb-3'>
               <div>
                 Already have an account? <Link to='/login'>Login here</Link>
               </div>
-              <button onClick={() => onRegister('user')} className='btn btn-success mt-2'>
+              <button onClick={() => onRegisterUser('ROLE_USER')} className='btn btn-success mt-2'>
                 Sign up as User
               </button>
-              <button onClick={() => onRegister('photographer')} className='btn btn-primary mt-2 ms-2'>
+              <button onClick={() => onRegisterPhotographer('ROLE_PHOTOGRAPHER')} className='btn btn-primary mt-2 ms-2'>
                 Sign up as Photographer
               </button>
             </div>
