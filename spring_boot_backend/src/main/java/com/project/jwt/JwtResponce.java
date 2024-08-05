@@ -12,3 +12,4 @@ public class JwtResponce {
 	private String jwtToken;
 
 }
+ 

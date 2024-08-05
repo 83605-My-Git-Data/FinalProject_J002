@@ -50,17 +50,15 @@ public class Photographer_Profile {
 	
 	
 	private String profilePhoto;
-	@Column(length = 25, name="Bio")
+	@Column(length = 255, name="Bio")
 	private String Bio;
 
 	@PrePersist
     public void prePersist() {
        
         if (Bio == null) {
-            Bio = "Passionate photographer with a keen eye for capturing life's "
-            		+ "most cherished moments. Whether it's a wedding, a special event,"
-            		+ " or a simple portrait, I strive to deliver stunning and memorable "
-            		+ "images that tell a unique story";
+            Bio = "Passionate photographer";
+            		
         }
        
     }
