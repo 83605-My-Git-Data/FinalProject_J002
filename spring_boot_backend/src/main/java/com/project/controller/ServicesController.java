@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.dto.ApiResponse;
 import com.project.dto.ServicesDto;
 import com.project.service.ServicesService;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/services")
 public class ServicesController {
