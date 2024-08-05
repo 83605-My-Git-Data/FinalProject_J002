@@ -23,10 +23,12 @@ import com.project.spring_security.UserDetailsService;
 
 import io.jsonwebtoken.Claims;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/login")
 public class LogInController {
