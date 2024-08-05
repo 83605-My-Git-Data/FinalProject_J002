@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { signUp } from '../services/user-service'
 
 function Register() {
   const [Firstname, setFirstName] = useState('')
@@ -36,6 +37,14 @@ function Register() {
         navigate('/login')
       }
     }
+    signUp().then((Response)=> {
+      console.log(Response)
+      console.log("success log");
+    }).catch((error)=>{
+      console.log(error)
+      console.log("Error Log")
+
+    });
   }
 
   return (
