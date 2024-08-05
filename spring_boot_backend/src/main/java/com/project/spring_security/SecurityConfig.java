@@ -65,7 +65,7 @@ public class SecurityConfig {
          .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 	
 		return http.build();
-	}
+	} 
 	//configure AuthMgr as a spring bean
 	@Bean
 	public AuthenticationManager authenticationManager
