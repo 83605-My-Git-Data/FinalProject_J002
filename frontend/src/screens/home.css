@@ -1,4 +1,3 @@
-/* home.css */
 .home-container {
   padding: 20px;
 }
@@ -11,51 +10,109 @@
 }
 
 .logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff5722; /* Change this to your preferred color */
+  font-family: 'Pacifico', cursive; /* Add a custom font family */
+  display: flex;
+  align-items: center;
+}
+
+.logo i {
+  margin-right: 10px;
+  font-size: 32px;
+}
+
+.headline {
   font-size: 24px;
   font-weight: bold;
+  text-align: center;
+  flex: 1;
 }
 
 .categories-dropdown {
-  flex: 1;
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .dropdown-container {
+  text-align: center;
+}
+
+.dropdown-container h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.dropdown-container select {
   width: 200px;
+  padding: 5px;
+  font-size: 16px;
 }
 
 .user-details {
   text-align: right;
 }
 
-.photographers-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+.faq-container {
+  margin-top: 20px;
 }
 
-.photographer-card {
+.faq-list {
+  list-style: none;
+  padding: 0;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 10px;
   border: 1px solid #ddd;
-  padding: 20px;
-  width: 200px;
-  text-align: center;
+  border-radius: 4px;
 }
 
-.photographer-photo {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
+.faq-answer {
+  padding: 10px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  
 }
-
-.photos-grid {
+.home-header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.photo {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+.logo {
+  font-size: 24px; /* Smaller font size */
+  font-weight: bold;
+  color: #ff5722; /* Change this to your preferred color */
+  font-family: 'Pacifico', cursive; /* Add a custom font family */
+  display: flex;
+  align-items: center;
+}
+
+.logo i {
+  margin-right: 10px;
+  font-size: 28px; /* Adjust icon size */
+}
+
+.brand-name {
+  font-size: 25px; /* Smaller font size */
+  font-weight: bold;
+  font-family: 'Pacifico', cursive; /* Use the same or different font family */
+  background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #7fff00, #00ff00, #00ff7f, #00ffff, #007fff, #0000ff, #7f00ff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

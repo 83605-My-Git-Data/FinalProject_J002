@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { register } from '../services/admin'
 
+
 function Register() {
   const [Firstname, setFirstName] = useState('')
   const [Lastname, setLastName] = useState('')
@@ -76,6 +77,8 @@ function Register() {
 
   return (
     <div>
+     
+    
       <h2 className='page-header'>Register</h2>
       <div className='row'>
         <div className='col'></div>
