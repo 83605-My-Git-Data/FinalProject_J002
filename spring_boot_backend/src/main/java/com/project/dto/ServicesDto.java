@@ -14,10 +14,10 @@ public class ServicesDto {
 	
 	
 	@NotNull(message = "photographer id cannot be blank")
-	private Long pid;
+	private Long photographerid;
 	
 	@NotNull(message = "category id cannot be blank")
-	private Long cid;
+	private Long categoryid;
 	
 	@NotNull(message = "price cannot be blank")
 	private Long price;
