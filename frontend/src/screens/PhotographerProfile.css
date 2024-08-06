@@ -1,0 +1,88 @@
+.photographer-profile {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .profile-pic-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+  .file-input {
+    display: none;
+  }
+  
+  .profile-pic-actions {
+    margin-top: 10px;
+  }
+  
+  .btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .profile-details {
+    flex: 1;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .category-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+  }
+  
+  .category-option {
+    display: flex;
+    align-items: center;
+  }
+  
+  .image-upload-section {
+    margin-top: 20px;
+  }
+  
+  .image-gallery {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  
+  .uploaded-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
