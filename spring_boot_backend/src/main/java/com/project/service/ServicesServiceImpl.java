@@ -41,13 +41,13 @@ public class ServicesServiceImpl implements ServicesService {
 	public ApiResponse addAService(ServicesDto servicesDto) {
 		System.out.println("inside service");
 		
-		Photographer_Profile profile= photographerProfileDao.findById(servicesDto.getPid())
+		Photographer_Profile profile= photographerProfileDao.findById(servicesDto.getPhotographerid())
 			 .orElseThrow(()-> new ResourceNotFoundException("Photographer does not exists"));
 	 
 
 	 
 	 
-	     Categories category  =  categoriesDao.findById(servicesDto.getCid())
+	     Categories category  =  categoriesDao.findById(servicesDto.getCategoryid())
 	    		 .orElseThrow(()-> new ResourceNotFoundException("Category does not exists"));
 	     
 	    Services services = new Services();
