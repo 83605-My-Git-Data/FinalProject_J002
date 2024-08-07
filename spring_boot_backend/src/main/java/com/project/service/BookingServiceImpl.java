@@ -2,6 +2,7 @@ package com.project.service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -15,7 +16,7 @@ import com.project.dao.BookingDao;
 import com.project.dao.PhotographerProfileDao;
 import com.project.dao.RegisterDao;
 import com.project.dto.ApiResponse;
-
+import com.project.dto.BookingRequestDto;
 import com.project.entities.Booking;
 
 import com.project.entities.Photographer_Profile;
@@ -82,6 +83,11 @@ public class BookingServiceImpl implements BookingService {
 	        bookingDao.save(booking);
 	        return new ApiResponse("booking status updated successfully");
 	    }
+
+		@Override
+		public List<BookingRequestDto> getBookingRequestForPhotographer(Long photographerId) {
+			 return bookingDao.findBookingRequestsByPhotographerId(photographerId);
+		}
 
 	  
 	}
