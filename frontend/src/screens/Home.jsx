@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import './home.css' // Correct relative path to import the CSS file
-
-
-
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './home.css'; // Correct relative path to import the CSS file
+import Navbar from './Navbar'; // Adjust the path as necessary
+import { FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 function Home() {
-  const [user, setUser] = useState({ name: 'John Doe', email: 'john@example.com' }) // Example user details
-  const [category, setCategory] = useState('')
-  const [faqIndex, setFaqIndex] = useState(null)
-  const navigate = useNavigate()
+  const [user, setUser] = useState({ name: 'John Doe', email: 'john@example.com' }); // Example user details
+  const [category, setCategory] = useState('');
+  const [faqIndex, setFaqIndex] = useState(null);
+  const navigate = useNavigate();
 
-  const categories = ['Wedding', 'Food', 'Nature', 'Travel'] // Example categories
+  const categories = ['Wedding', 'Food', 'Nature', 'Travel']; // Example categories
 
   const faqs = [
     {
@@ -40,75 +39,56 @@ function Home() {
   ]
 
   const handleCategoryChange = (e) => {
-    setCategory(e.target.value)
+    setCategory(e.target.value);
     if (e.target.value) {
-      navigate(`/category/${e.target.value.toLowerCase()}`)
+      navigate(`/category/${e.target.value.toLowerCase()}`);
     }
-  }
+  };
 
   const toggleFaq = (index) => {
-    setFaqIndex(faqIndex === index ? null : index)
-  }
+    setFaqIndex(faqIndex === index ? null : index);
+  };
 
   return (
-    <div className='home-container'>
-    
-      <header className='home-header'>
-      <div className='logo'>
-        
-          <img src='/favicon.ico' alt='ClickGenius Logo' className='logo' />
-          <span className='brand-name'>ClickGenius</span>
-        </div>
-        
-        <h1 className='headline'>Welcome to the Home Page</h1>
-        <div className='user-details'>
-          <p>{user.name}</p>
-          <p>{user.email}</p>
-        </div>
-      </header>
-      <main>
-        <div className='categories-dropdown'>
-          <div className='dropdown-container'>
-            <h3>Select Category</h3>
-            <select value={category} onChange={handleCategoryChange}>
-              <option value=''>Select Category</option>
-              {categories.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
+    <>
+      <Navbar /> {/* Include the CustomNavbar component */}
+      <div className='home-container'>
+        <header className='home-header'>
+          <h1 className='headline'>Welcome to the Home Page</h1>
+          
+          
+        </header>
+        <main>
+          <div className='faq-container'>
+            <h3>Frequently Asked Questions</h3>
+            <ul className='faq-list'>
+              {faqs.map((faq, index) => (
+                <li key={index} className='faq-item'>
+                  <div className='faq-question' onClick={() => toggleFaq(index)}>
+                    {faq.question} <span className='arrow'>{faqIndex === index ? '▲' : '▼'}</span>
+                  </div>
+                  {faqIndex === index && <div className='faq-answer'>{faq.answer}</div>}
+                </li>
               ))}
-            </select>
+            </ul>
           </div>
-        </div>
-        <div className='faq-container'>
-          <h3>Frequently Asked Questions</h3>
-          <ul className='faq-list'>
-            {faqs.map((faq, index) => (
-              <li key={index} className='faq-item'>
-                <div className='faq-question' onClick={() => toggleFaq(index)}>
-                  {faq.question} <span className='arrow'>{faqIndex === index ? '▲' : '▼'}</span>
-                </div>
-                {faqIndex === index && <div className='faq-answer'>{faq.answer}</div>}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </main>
-      <footer className='home-footer'>
-        <div className='social-media'>
-          <a href='https://www.instagram.com' target='_blank' rel='noopener noreferrer'>
-            <i className='fab fa-instagram'></i> Instagram
-          </a>
-          <a href='https://www.facebook.com' target='_blank' rel='noopener noreferrer'>
-            <i className='fab fa-facebook'></i> Facebook
-          </a>
-          <a href='https://www.twitter.com' target='_blank' rel='noopener noreferrer'>
-            <i className='fab fa-twitter'></i> Twitter
-          </a>
-        </div>
-      </footer>
-    </div>
-  )
+        </main>
+        <footer className='home-footer'>
+          <div className='social-media'>
+            <a href='https://www.instagram.com' target='_blank' rel='noopener noreferrer'>
+              <FaInstagram /> {/* Instagram icon */}
+            </a>
+            <a href='https://www.twitter.com' target='_blank' rel='noopener noreferrer'>
+              <FaTwitter /> {/* Twitter icon */}
+            </a>
+            <a href='https://www.linkedin.com' target='_blank' rel='noopener noreferrer'>
+              <FaLinkedin /> {/* LinkedIn icon */}
+            </a>
+          </div>
+        </footer>
+      </div>
+    </>
+  );
 }
 
-export default Home
+export default Home;

@@ -9,6 +9,8 @@ import PhotographerPhotos from './screens/PhotographerPhotos'
 import Booking from './screens/Booking';
 import BookingConfirm from './screens/BookingConfirm';
 import Appointments from './screens/Appointments';
+import Navbar from "./screens/Navbar"
+
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
         <Route path="/booking" element={<Booking />} />
          <Route path="/booking-confirmation" element={<BookingConfirm/>} ></Route>
          <Route path="/appointments" element={<Appointments />}> </Route>
+         <Route path="/navbar" element={<Navbar/>}></Route>
          {/* Add new route */}
          
       </Routes>
@@ -33,5 +36,6 @@ function App() {
     </div>
   )
 }
+
 
 export default App
