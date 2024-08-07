@@ -15,6 +15,10 @@ import com.project.service.ServicesService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @CrossOrigin("*")
 @RestController
@@ -37,6 +41,21 @@ public class ServicesController {
 		}
 	
 	}
+	
+	@GetMapping("/{userId}")
+	public ResponseEntity<?> getServicesForPhotographer(@PathVariable Long userId) {
+		
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(servicesService.getServiceForPhotographer(userId));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(e.getMessage()));
+		}
+		
+		
+		
+		
+	}
+	
 	
 
 }

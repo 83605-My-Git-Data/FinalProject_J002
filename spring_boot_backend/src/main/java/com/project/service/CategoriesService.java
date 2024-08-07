@@ -11,4 +11,6 @@ public interface CategoriesService {
 	public ApiResponse AddCategories(CategoriesDTO DTO);
 
 	public List<Categories> getAllCategories();
+	
+	
 }
