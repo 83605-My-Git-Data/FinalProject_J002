@@ -42,6 +42,8 @@ public class CategoriesServiceImpl  implements CategoriesService{
 		List<Categories> list = categoriesdao.findAll();
 		return list;
 	}
+
+	 
 	
 
 }
