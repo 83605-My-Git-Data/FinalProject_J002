@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './home.css'; // Correct relative path to import the CSS file
-import Navbar from './Navbar'; // Adjust the path as necessary
+import CustomNavbar from './Navbar'; // Adjust the path as necessary
 import { FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
+import { fetchCategories } from '../services/admin'; // Adjust the path as necessary
 function Home() {
   const [user, setUser] = useState({ name: 'John Doe', email: 'john@example.com' }); // Example user details
   const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState([]);
+
   const [faqIndex, setFaqIndex] = useState(null);
   const navigate = useNavigate();
 
-  const categories = ['Wedding', 'Food', 'Nature', 'Travel']; // Example categories
+  useEffect(() => {
+    async function getCategories() {
+      const categoriesData = await fetchCategories();
+      console.log(categoriesData);
+      setCategories(categoriesData);
+    }
+
+    getCategories();
+  }, []);
+
+
 
   const faqs = [
     {
@@ -41,7 +54,7 @@ function Home() {
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
     if (e.target.value) {
-      navigate(`/category/${e.target.value.toLowerCase()}`);
+      navigate(`/category/${e.target.value}`);
     }
   };
 
@@ -51,7 +64,7 @@ function Home() {
 
   return (
     <>
-      <Navbar /> {/* Include the CustomNavbar component */}
+      <CustomNavbar categories={categories} />
       <div className='home-container'>
         <header className='home-header'>
           <h1 className='headline'>Welcome to the Home Page</h1>
@@ -59,6 +72,7 @@ function Home() {
           
         </header>
         <main>
+         
           <div className='faq-container'>
             <h3>Frequently Asked Questions</h3>
             <ul className='faq-list'>
