@@ -1,68 +1,11 @@
-.home-container {
-  padding: 20px;
-}
-
-.home-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.logo {
-  font-size: 20px;
-  font-weight: bold;
-  color: #ff5722; /* Change this to your preferred color */
-  font-family: 'Pacifico', cursive; /* Add a custom font family */
-  display: flex;
-  align-items: center;
-}
-
-.logo i {
-  margin-right: 10px;
-  font-size: 32px;
-}
-
-.headline {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  flex: 1;
-}
-
-.categories-dropdown {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.dropdown-container {
-  text-align: center;
-}
-
-.dropdown-container h3 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.dropdown-container select {
-  width: 200px;
-  padding: 5px;
-  font-size: 16px;
-}
-
-.user-details {
-  text-align: right;
-}
-
+/* home.css */
 .faq-container {
-  margin-top: 20px;
+  margin-top: 100px;
 }
 
 .faq-list {
   list-style: none;
-  padding: 0;
+  padding: 10px;
 }
 
 .faq-item {
@@ -87,32 +30,30 @@
   border-bottom: 1px solid #ddd;
   
 }
-.home-header {
+/* Footer section */
+.home-footer {
+  padding: 1px;
+ 
+  color: #ffffff; /* White text color */
+  text-align: left;
+}
+
+/* Social media links */
+.home-footer .social-media {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  justify-content: left;
+  gap: 1rem; /* Space between icons */
+  padding: 1rem 0;
 }
 
-.logo {
-  font-size: 24px; /* Smaller font size */
-  font-weight: bold;
-  color: #ff5722; /* Change this to your preferred color */
-  font-family: 'Pacifico', cursive; /* Add a custom font family */
-  display: flex;
-  align-items: center;
+.home-footer .social-media a {
+  color: black; /* White color for icons */
+  font-size: 1.5rem; /* Size of icons */
+  text-decoration: none;
+  transition: color 0.3s, transform 0.3s;
 }
 
-.logo i {
-  margin-right: 10px;
-  font-size: 28px; /* Adjust icon size */
-}
-
-.brand-name {
-  font-size: 25px; /* Smaller font size */
-  font-weight: bold;
-  font-family: 'Pacifico', cursive; /* Use the same or different font family */
-  background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #7fff00, #00ff00, #00ff7f, #00ffff, #007fff, #0000ff, #7f00ff, #ff00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.home-footer .social-media a:hover {
+  color: #f8f9fa; /* Light color on hover */
+  transform: scale(1.1); /* Slightly enlarge icon on hover */
 }

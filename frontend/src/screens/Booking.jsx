@@ -1,9 +1,7 @@
-// src/screens/BookingConfirmation.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import './Booking.css';
-
 
 function BookingConfirmation() {
   const [form, setForm] = useState({
@@ -24,8 +22,9 @@ function BookingConfirmation() {
   };
 
   const handleConfirm = () => {
-    // Handle booking confirmation logic here
-    console.log('Booking Confirmed:', form);
+    // Manually format the date to yyyy-mm-dd before logging or processing
+    const formattedDate = new Date(form.date).toISOString().split('T')[0];
+    console.log('Booking Confirmed:', { ...form, date: formattedDate });
     navigate('/home'); // Navigate to home after confirmation
   };
 
@@ -69,10 +68,10 @@ function BookingConfirmation() {
           />
         </div>
         <div>
-        <label>Amount:</label>
+          <label>Amount:</label>
           <input
             type="number"
-            name="amount" // updated name attribute to 'amount'
+            name="amount"
             value={form.amount}
             onChange={handleChange}
           />
