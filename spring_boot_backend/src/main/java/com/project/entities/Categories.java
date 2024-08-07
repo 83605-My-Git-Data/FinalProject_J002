@@ -31,11 +31,10 @@ public class Categories {
 	private String categoryname;
 	
 	
-	private String extensioncolumn;
 	
 	
 	
 	
 	
-
+ 
 }

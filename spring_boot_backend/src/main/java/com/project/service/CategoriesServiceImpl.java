@@ -1,5 +1,7 @@
 package com.project.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
@@ -33,6 +35,12 @@ public class CategoriesServiceImpl  implements CategoriesService{
 		
 		categoriesdao.save(categories);
 		return new ApiResponse(message);
+	}
+
+	@Override
+	public List<Categories> getAllCategories() {
+		List<Categories> list = categoriesdao.findAll();
+		return list;
 	}
 	
 
