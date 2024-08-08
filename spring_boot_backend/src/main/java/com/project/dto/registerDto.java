@@ -1,6 +1,9 @@
 package com.project.dto;	
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
 import com.project.entities.Gender;
 import com.project.entities.Role;
 
@@ -28,6 +31,8 @@ public class registerDto {
 		
 		
 		@NotEmpty(message = "phone number cannot be empty")
+		@Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Phone number must be valid and contain only digits, with an optional leading '+'")
+	
 		private String phoneNo;
 	
 		@NotEmpty(message="password can not empty")

@@ -23,9 +23,6 @@ public class Application {
 		return modelMapper;
 	}
 	
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	
 
 }
