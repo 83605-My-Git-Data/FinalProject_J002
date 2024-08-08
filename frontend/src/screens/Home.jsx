@@ -11,6 +11,7 @@ function Home() {
 
   const categories = ['Wedding', 'Food', 'Nature', 'Travel']; // Example categories
 
+  
   const faqs = [
     {
       question: 'What are ClickGenius photography services?',
@@ -45,9 +46,12 @@ function Home() {
     }
   };
 
+
+
   const toggleFaq = (index) => {
     setFaqIndex(faqIndex === index ? null : index);
   };
+  
 
   return (
     <>
@@ -55,7 +59,15 @@ function Home() {
       <div className='home-container'>
         <header className='home-header'>
           <h1 className='headline'>Welcome to the Home Page</h1>
-          
+           <div className='marquee-container'>
+            <div className='marquee'>
+              <img src='./img1.jpg' alt='Photography 1' />
+              <img src='./img3.jpg' alt='Photography 2' />
+              <img src='./img3.jpg' alt='Photography 3' />
+              <img src='./img5.jpg' alt='Photography 4' />
+              {/* Add more images as needed */}
+            </div>
+          </div>
           
         </header>
         <main>
