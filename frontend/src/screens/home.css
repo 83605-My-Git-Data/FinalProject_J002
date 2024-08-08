@@ -1,4 +1,7 @@
 /* home.css */
+/* .home-container{
+  background-color: ;
+} */
 .faq-container {
   margin-top: 100px;
 }
@@ -56,4 +59,33 @@
 .home-footer .social-media a:hover {
   color: #f8f9fa; /* Light color on hover */
   transform: scale(1.1); /* Slightly enlarge icon on hover */
+}
+
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px 0;
+}
+
+.marquee {
+  display: flex;
+  animation: scroll 25s linear infinite;
+}
+
+.marquee img {
+  margin: 0 10px;
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
