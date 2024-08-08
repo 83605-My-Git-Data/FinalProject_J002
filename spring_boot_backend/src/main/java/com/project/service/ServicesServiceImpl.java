@@ -1,5 +1,7 @@
 package com.project.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
@@ -8,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.project.custom_exceptions.ResourceNotFoundException;
 import com.project.dao.CategoriesDao;
+import com.project.dao.PhotographerCategoriesDao;
 import com.project.dao.PhotographerProfileDao;
 import com.project.dao.ServicesDao;
 import com.project.dto.ApiResponse;
 import com.project.dto.ServicesDto;
+import com.project.dto.ServicesRespDto;
 import com.project.entities.Categories;
 import com.project.entities.Photographer_Profile;
 import com.project.entities.Services;
@@ -28,6 +32,9 @@ public class ServicesServiceImpl implements ServicesService {
 	
 	@Autowired
 	CategoriesDao categoriesDao;
+	
+	@Autowired
+	PhotographerCategoriesDao photographerCategoriesDao;
 	
 	
 	@Autowired
@@ -61,5 +68,18 @@ public class ServicesServiceImpl implements ServicesService {
 	     
 		
 	}
+
+
+
+
+
+	@Override
+	public List<ServicesRespDto> getServiceForPhotographer(Long userId) {
+		
+		List<ServicesRespDto> list =	servicesDao.findPhotographerServices(userId);
+		return list;
+		
+		 
+	} 
  
 }
