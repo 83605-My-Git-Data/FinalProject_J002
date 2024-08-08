@@ -29,8 +29,8 @@ public class UploadedImagesController {
 	    public ResponseEntity<List<Uploaded_Images>> uploadImages(@PathVariable Long photographerid,
 	                                                            @PathVariable Long categoryid,
 	                                                            @RequestParam("files") List<MultipartFile> files) throws IOException {
-	        List<Uploaded_Images> uploadedImages = uploadedImageService.Addimages(photographerid, categoryid, files);
-			return new ResponseEntity<>(uploadedImages, HttpStatus.CREATED);
+	    	 List<Uploaded_Images> uploadedImages = uploadedImageService.Addimages(photographerid, categoryid, files);
+				return new ResponseEntity<>(uploadedImages, HttpStatus.CREATED);
 	    }
 	}
 
