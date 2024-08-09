@@ -2,6 +2,7 @@ package com.project.service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -15,7 +16,11 @@ import com.project.dao.BookingDao;
 import com.project.dao.PhotographerProfileDao;
 import com.project.dao.RegisterDao;
 import com.project.dto.ApiResponse;
+
 import com.project.dto.BookingdetailsrespDTO;
+
+import com.project.dto.BookingRequestDto;
+
 import com.project.entities.Booking;
 
 import com.project.entities.Photographer_Profile;
@@ -84,6 +89,7 @@ public class BookingServiceImpl implements BookingService {
 	    }
 
 		@Override
+
 		public ApiResponse cancelBooking(Long id) {
 			
 		Booking booking	=bookingDao .findById(id) .
@@ -103,6 +109,11 @@ public class BookingServiceImpl implements BookingService {
 		
 		}
 		
+
+		public List<BookingRequestDto> getBookingRequestForPhotographer(Long photographerId) {
+			 return bookingDao.findBookingRequestsByPhotographerId(photographerId);
+		}
+
 
 	  
 	}

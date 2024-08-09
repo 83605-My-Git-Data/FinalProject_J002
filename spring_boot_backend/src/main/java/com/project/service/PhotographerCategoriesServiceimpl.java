@@ -1,5 +1,7 @@
 package com.project.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import com.project.dao.CategoriesDao;
 import com.project.dao.PhotographerCategoriesDao;
 import com.project.dao.PhotographerProfileDao;
 import com.project.dto.ApiResponse;
+import com.project.dto.CategoryResponceDto;
 import com.project.dto.PhotographerCategoriesReqDto;
 import com.project.entities.Categories;
 import com.project.entities.Photographer_Categories;
@@ -61,6 +64,13 @@ public class PhotographerCategoriesServiceimpl  implements PhotographerCategorie
 	 
 	 return new ApiResponse("Succesfully added category to photographer");
 	
+	}
+
+
+
+	@Override
+	public List<CategoryResponceDto> getCategoriesForPhotographer(Long userId) {
+		return photographerCategoriesDao.findCategoriesByPhotographerId(userId);
 	}
 
 }

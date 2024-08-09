@@ -1,3 +1,4 @@
+
 package com.project.dto;
 
 import java.util.ArrayList;
@@ -38,17 +39,4 @@ public class PhotographerRespDTO {
         this.image.add(imageUrl);
     }
 	
-
-
-	
-
-	
-
-	}
-
-	
-	
-	
-
-
-
+}

@@ -50,7 +50,7 @@ public class CategoriesController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(e.getMessage()));
 		}
-	}
+	} 
 	
 	 @GetMapping("/photographers")
 	    public List<PhotographerRespDTO> getPhotographersByCategory(@RequestParam Long id) {

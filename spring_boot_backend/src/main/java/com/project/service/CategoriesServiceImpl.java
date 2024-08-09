@@ -73,6 +73,7 @@ public class CategoriesServiceImpl  implements CategoriesService{
 
 		    return new ArrayList<>(photographerMap.values());
 
+
 }
 	}
 	
