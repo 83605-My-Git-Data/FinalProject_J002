@@ -1,0 +1,91 @@
+/* home.css */
+/* .home-container{
+  background-color: ;
+} */
+.faq-container {
+  margin-top: 100px;
+}
+
+.faq-list {
+  list-style: none;
+  padding: 10px;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.faq-answer {
+  padding: 10px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  
+}
+/* Footer section */
+.home-footer {
+  padding: 1px;
+ 
+  color: #ffffff; /* White text color */
+  text-align: left;
+}
+
+/* Social media links */
+.home-footer .social-media {
+  display: flex;
+  justify-content: left;
+  gap: 1rem; /* Space between icons */
+  padding: 1rem 0;
+}
+
+.home-footer .social-media a {
+  color: black; /* White color for icons */
+  font-size: 1.5rem; /* Size of icons */
+  text-decoration: none;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.home-footer .social-media a:hover {
+  color: #f8f9fa; /* Light color on hover */
+  transform: scale(1.1); /* Slightly enlarge icon on hover */
+}
+
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px 0;
+}
+
+.marquee {
+  display: flex;
+  animation: scroll 25s linear infinite;
+}
+
+.marquee img {
+  margin: 0 10px;
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

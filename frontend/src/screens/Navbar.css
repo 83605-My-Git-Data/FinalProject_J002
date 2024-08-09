@@ -1,0 +1,57 @@
+/* Navbar.css */
+
+/* Basic styling for the navbar */
+.custom-navbar {
+  background-color: #343a40; /* Dark background */
+  border-bottom: 1px solid #454d55; /* Slight border for separation */
+  background-color: black;
+}
+
+/* Style for the brand logo */
+.custom-navbar .logo {
+  height: 30px; /* Adjust based on your logo size */
+}
+
+/* Style for the brand name with rainbow gradient */
+.custom-navbar .brand-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-left: 10px; /* Space between logo and brand name */
+  background: linear-gradient(45deg, red, orange, yellow, rgb(105, 203, 105), blue, rgb(173, 73, 244), rgb(226, 190, 226));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navbar links */
+.custom-navbar .nav-link {
+  color: #ffffff !important;
+  font-size: 0.9rem; /* Adjust font size */
+  padding: 0.5rem 1rem; /* Add some padding for better spacing */
+
+}
+
+/* Hover effect for navbar links */
+.custom-navbar .nav-link:hover {
+  /* color: #f8f9fa !important;  */
+  color: black;
+  background-color: #47484a; 
+}
+/* Align elements to the right side of the navbar */
+.custom-navbar .ml-auto {
+  margin-left: 1040px;
+}
+
+ .custom-navbar .dropdown-item {
+  color: black; 
+}  
+
+/* Hover effect for NavDropdown items */
+.custom-navbar .dropdown-item:hover {
+  background-color: #47484a; /* Adjust background color on hover if needed */
+  color: #f8f9fa; /* Adjust text color on hover if needed */
+}
+
+#basic-nav-dropdown {
+  color: black;
+}
+
