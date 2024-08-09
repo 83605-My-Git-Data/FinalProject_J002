@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,8 @@ import com.project.service.PhotographerProfileService;
 import com.project.dto.ApiResponse;
 import com.project.dto.BioDTO;
 import com.project.dto.ExperienceDTO;
+import com.project.dto.PhotographerRespDTO;
+import com.project.dto.PhotographerdetailrespDTO;
 
 @CrossOrigin("*")
 @RestController
@@ -108,7 +111,15 @@ public class PhotographerProfileController {
          return new ResponseEntity<>("File upload failed: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
      }
  }
-	   
+     @GetMapping("/{id}/photographerdetails")
+	   public ResponseEntity<PhotographerdetailrespDTO>  getPhotographerdetail(@PathVariable("id") Long PhotographerId)
+	   {
+		   PhotographerdetailrespDTO photographerDetail = photographerProfileService.getPhotographer(PhotographerId);
+	        if (photographerDetail == null) {
+	            return ResponseEntity.notFound().build();
+	        }
+	        return ResponseEntity.ok(photographerDetail);
+	   }
 	   
 	   
 	

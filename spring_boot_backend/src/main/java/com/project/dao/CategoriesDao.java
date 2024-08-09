@@ -10,7 +10,7 @@ import com.project.dto.PhotographerRespDTO;
 import com.project.entities.Categories;
 
 public interface CategoriesDao  extends JpaRepository<Categories, Long>{
-	
+
 	@Query("SELECT new com.project.dto.PhotographerRespDTO(" +
 		       "R.id, CONCAT(R.firstName, ' ', R.lastName), PP.profilePhoto, S.price) " +
 		       "FROM Services S " +
@@ -19,4 +19,5 @@ public interface CategoriesDao  extends JpaRepository<Categories, Long>{
 		       "JOIN Register R ON PP.userId = R.id " + 
 		       "WHERE C.id = :id")
 		List<PhotographerRespDTO> findPhotographerDetailsByCategoryId(@Param("id") Long id);
+
 }

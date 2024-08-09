@@ -35,7 +35,7 @@ public class BookingDTO {
 	
 	@NotBlank
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate eventDate;
+	private LocalDate EventDate;
 
 	
 	
