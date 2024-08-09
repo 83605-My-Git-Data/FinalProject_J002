@@ -15,7 +15,7 @@ import com.project.dao.BookingDao;
 import com.project.dao.PhotographerProfileDao;
 import com.project.dao.RegisterDao;
 import com.project.dto.ApiResponse;
-
+import com.project.dto.BookingdetailsrespDTO;
 import com.project.entities.Booking;
 
 import com.project.entities.Photographer_Profile;
@@ -77,11 +77,32 @@ public class BookingServiceImpl implements BookingService {
 
 	    public ApiResponse  updateBookingStatus(Long bookingId,Status status) {
 	        Booking booking = bookingDao.findById(bookingId)
-	                .orElseThrow(() -> new ResourceNotFoundException("Booking not found"));
+	       .orElseThrow(() -> new ResourceNotFoundException("Booking not found"));
 	        booking.setStatus(status);
 	        bookingDao.save(booking);
 	        return new ApiResponse("booking status updated successfully");
 	    }
+
+		@Override
+		public ApiResponse cancelBooking(Long id) {
+			
+		Booking booking	=bookingDao .findById(id) .
+				orElseThrow(() -> new ResourceNotFoundException("Booking not found with id: " ));
+		
+		booking.setStatus(Status.CANCELLED);
+		bookingDao.save(booking);
+		
+
+			return new ApiResponse("Booking cancelled successfully");
+		}
+
+		@Override
+		public BookingdetailsrespDTO getBookingDetails(Long bookingId) {
+			
+		  return bookingDao.findBookingDetailsById(bookingId);
+		
+		}
+		
 
 	  
 	}
