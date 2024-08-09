@@ -51,6 +51,10 @@ public class SecurityConfig {
 //                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 //                //inserting jwt filter before sec filter
 //                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        
+        
+        
+        //use this to enable all endpoint public
 		
 		 http.cors(withDefaults())
          //disable CSRF token generation n verification
@@ -63,7 +67,7 @@ public class SecurityConfig {
                  .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
          //inserting jwt filter before sec filter
          .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-	
+//	
 		return http.build();
 	} 
 	//configure AuthMgr as a spring bean
