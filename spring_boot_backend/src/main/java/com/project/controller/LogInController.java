@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.dao.PhotographerProfileDao;
+import com.project.dao.RegisterDao;
 import com.project.dto.ApiResponse;
 import com.project.dto.JwtResponceDTO;
 import com.project.dto.registerDto;
 import com.project.dto.signInDto;
 import com.project.entities.Photographer_Profile;
 import com.project.entities.Register;
+import com.project.entities.Role;
 import com.project.jwt.JwtHelper;
 
 import com.project.service.LogInService;
@@ -45,6 +47,12 @@ public class LogInController {
 	
 	 @Autowired
 	 JwtHelper jwtHelper;
+	 
+	 @Autowired
+		RegisterDao registerDao;
+	 
+	 @Autowired
+		PhotographerProfileDao photographerProfileDao;
 
 	
 	
@@ -54,10 +62,30 @@ public class LogInController {
 		try {
 			 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInDto.getEmail(), signInDto.getPassword()));
 		        final UserDetails userDetails = logInService.loadUserByUsername(signInDto.getEmail());
+		        
+		        Register register =  registerDao.findByEmail(userDetails.getUsername());
+		        
+		    Role role  =   register.getRole();
+		    
+		    if("ROLE_PHOTOGRAPHER".equals(role)) {
+				  
+				  Long userId = register.getId();
+				 
+				  if (!photographerProfileDao.existsByUserId(userId)) {
+		                Photographer_Profile profile = new Photographer_Profile();
+		                profile.setUserId(userId);
+		                photographerProfileDao.save(profile);
+		            }		  
+				  
+			  }
+		    
+		    
+		    String nameOfUser = register.getFirstName()+" "+register.getLastName();
+		        
 		        final String jwtToken = jwtHelper.generateToken(userDetails);
+		        JwtResponceDTO jwtResponceDTO = new JwtResponceDTO(jwtToken, nameOfUser);
 		        
-		        
-		        return new ResponseEntity<>(jwtToken,HttpStatus.OK);
+		        return new ResponseEntity<>(jwtResponceDTO,HttpStatus.OK);
 			
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(e.getMessage()));

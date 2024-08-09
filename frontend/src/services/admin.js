@@ -38,13 +38,40 @@ export async function login(email, password) {
    
   }
 
+
   export async function fetchCategories() {
     try {
-      const response = await axios.get(`${config.serverUrl}/Categories`);
-      console.log(response.data);
-      return response.data; // This should be an array of categories
+        const token = sessionStorage.getItem('token');
+        console.log("Token from sessionStorage:", token); // Ensure this is not null or undefined
+
+        const response = await axios.get(`${config.serverUrl}/Categories`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        console.log(response.data);
+        return response.data; // This should be an array of categories
     } catch (error) {
-      console.error('Error fetching categories:', error);
-      return []; // Return an empty array in case of error
+        console.error('Error fetching categories:', error);
+        return []; // Return an empty array in case of error
     }
-  }
+}
+
+
+
+
+
+
+  // export async function fetchCategories() {
+  //   try {
+  //     const token = sessionStorage['token']
+  //     const response = await axios.get(`${config.serverUrl}/Categories`,{
+  //       headers:{`Bearer ${token}`}
+  //     });
+  //     console.log(response.data);
+  //     return response.data; // This should be an array of categories
+  //   } catch (error) {
+  //     console.error('Error fetching categories:', error);
+  //     return []; // Return an empty array in case of error
+  //   }
+  // }
