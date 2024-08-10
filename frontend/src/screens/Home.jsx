@@ -4,6 +4,19 @@ import './home.css'; // Correct relative path to import the CSS file
 import CustomNavbar from './Navbar'; // Adjust the path as necessary
 import { FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { fetchCategories } from '../services/admin'; // Adjust the path as necessary
+import img1 from '../screens/img1.jpg'
+import img2 from '../screens/img2.jpg'
+import img3 from '../screens/img3.jpg'
+import img4 from '../screens/img4.jpg'
+import img5 from '../screens/img5.jpg'
+import img6 from '../screens/img6.jpg'
+import img7 from '../screens/img7.jpg'
+import img8 from '../screens/img8.jpg'
+
+
+
+
+
 function Home() {
   const [user, setUser] = useState({ name: 'John Doe', email: 'john@example.com' }); // Example user details
   const [category, setCategory] = useState('');
@@ -74,10 +87,17 @@ function Home() {
           <h1 className='headline'>Welcome to the Home Page</h1>
            <div className='marquee-container'>
             <div className='marquee'>
-              <img src='./img1.jpg' alt='Photography 1' />
-              <img src='./img3.jpg' alt='Photography 2' />
-              <img src='./img3.jpg' alt='Photography 3' />
-              <img src='./img5.jpg' alt='Photography 4' />
+              <img src={img1} alt='Photography 1' />
+              <img src={img6} alt='Photography 6' />
+              <img src={img2} alt='Photography 2' />
+              <img src={img3} alt='Photography 3' />
+              <img src={img4} alt='Photography 4' />
+              <img src={img5} alt='Photography 5' />
+              <img src={img7} alt='Photography 7' />
+              <img src={img8} alt='Photography 8' />
+
+
+              
               {/* Add more images as needed */}
             </div>
           </div>
