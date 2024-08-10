@@ -1,5 +1,7 @@
 package com.project.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.project.dto.ApiResponse;
 import com.project.dto.BioDTO;
 import com.project.dto.ExperienceDTO;
+import com.project.dto.PhotographerdetailrespDTO;
 import com.project.dao.PhotographerProfileDao;
 import com.project.dao.RegisterDao;
 import com.project.custom_exceptions.ResourceNotFoundException;
@@ -82,18 +85,17 @@ public class PhotographerProfileServiceimpl implements PhotographerProfileServic
 		  
 		  Role role = register.getRole();
 		   
-		    
-		    if (role == null || role != Role.ROLE_PHOTOGRAPHER) {
+		       if (role == null || role != Role.ROLE_PHOTOGRAPHER) {
 		        throw new RuntimeException("User is not a photographer");
 		    }
-		    // Retrieve the existing Photographer_Profile entity
+		    
 		    Photographer_Profile profile = photographerProfileDao.findById(register.getId())
 		            .orElseThrow(() -> new ResourceNotFoundException("Photographer profile not found"));
 
-		    // Update the bio field
+		   
 		    profile.setBio(bioDTO.getBio());
 
-		    // Save the updated Photographer_Profile entity
+//		    }
 		    photographerProfileDao.save(profile);
 
 
@@ -117,20 +119,39 @@ public class PhotographerProfileServiceimpl implements PhotographerProfileServic
 		    if (role == null || role != Role.ROLE_PHOTOGRAPHER) {
 		        throw new RuntimeException("User is not a photographer");
 		    }
-		    // Retrieve the existing Photographer_Profile entity
+		    
 		    Photographer_Profile profile = photographerProfileDao.findById(register.getId())
 		            .orElseThrow(() -> new ResourceNotFoundException("Photographer profile not found"));
 
-		    // Update the bio field
+		    
 		    profile.setExperienceLevel(experienceDTO.getExperienceLevel());
 
-		    // Save the updated Photographer_Profile entity
+		   
 		    photographerProfileDao.save(profile);
 
 
 		    return new ApiResponse("Experience updated successfully");
 		    
 	}
+
+
+
+
+
+	@Override
+	public PhotographerdetailrespDTO getPhotographer(Long PhotographerId) {
+		
+		PhotographerdetailrespDTO photographerdetail=photographerProfileDao.findPhotographerBasicDetailById(PhotographerId);
+		  
+        if (photographerdetail != null) {
+            List<String> images = photographerProfileDao.findImagesByPhotographerId(PhotographerId);
+            photographerdetail.setImage(images); 
+        }
+
+        return photographerdetail;
+
+	}
+
 
 
 
