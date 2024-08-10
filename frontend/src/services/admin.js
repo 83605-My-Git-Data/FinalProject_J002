@@ -42,9 +42,32 @@ export async function login(email, password) {
     try {
       const response = await axios.get(`${config.serverUrl}/Categories`);
       console.log(response.data);
-      return response.data; // This should be an array of categories
+      return response.data; 
     } catch (error) {
       console.error('Error fetching categories:', error);
-      return []; // Return an empty array in case of error
+      return [];
     }
   }
+
+  export async function fetchPhotographersByCategoryId(categoryId) {
+    try {
+      const response = await axios.get(`${config.serverUrl}/Categories/photographers?categoryId=${categoryId}`);
+      
+      console.log(response.data)
+     
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching photographers:', error);
+      return [];
+    }
+
+  }
+
+ 
+  
+
+
+
+
+
+
