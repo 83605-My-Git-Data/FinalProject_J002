@@ -27,6 +27,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
+
+        <Route path="/photographer_profile/:id/photographerdetails" element={<PhotographerProfile />} />
+        <Route path="/category/:categoryName" element={<Category />} />
+        <Route path="/photographer/:photographerId/photos" element={<PhotographerPhotos />} />
+
         <Route path="/photographer-profile" element={<PhotographerProfile />} />
         <Route path="/category/:categoryId" element={<PhotographerGrid />} />
         
@@ -34,6 +39,7 @@ function App() {
         
       
        
+
         {/* <Route path="/" element={<Booking/>} /> */}
         <Route path="/booking" element={<Booking />} />
          <Route path="/booking-confirmation" element={<BookingConfirm/>} ></Route>

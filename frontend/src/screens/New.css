@@ -1,0 +1,26 @@
+.transparent-card {
+    background: rgba(155, 57, 57, 0.3); /* White background with 30% opacity */
+    border: none; /* Remove border to enhance the transparency effect */
+    box-shadow: 1px 4px 10px rgba(6, 28, 6, 0.1); /* Light shadow */
+    border-radius: 8px; /* Rounded corners */
+    color: #333; /* Ensure text is visible on the transparent background */
+}
+
+.transparent-card .card-img-top {
+    border-radius: 8px 8px 8px 8px; /* Round top corners for the image */
+}
+
+.transparent-card .card-title,
+.transparent-card .card-text {
+    color: #2c1616; /* White text for better contrast on dark backgrounds */
+}
+
+.transparent-card .btn-primary {
+    background-color: rgba(36, 39, 42, 0.8); /* Semi-transparent button */
+    border-color: rgba(0, 123, 255, 0.8);
+}
+
+.transparent-card .btn-primary:hover {
+    background-color: rgba(0, 123, 255, 1); /* Fully opaque on hover */
+    border-color: rgba(0, 123, 255, 1);
+}
