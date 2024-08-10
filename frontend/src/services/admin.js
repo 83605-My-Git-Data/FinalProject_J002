@@ -40,6 +40,39 @@ export async function login(email, password) {
 
   export async function fetchCategories() {
     try {
+
+      const response = await axios.get(`${config.serverUrl}/Categories`);
+      console.log(response.data);
+      return response.data; 
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      return [];
+    }
+  }
+
+  export async function fetchPhotographersByCategoryId(categoryId) {
+    try {
+      const response = await axios.get(`${config.serverUrl}/Categories/photographers?categoryId=${categoryId}`);
+      
+      console.log(response.data)
+     
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching photographers:', error);
+      return [];
+    }
+
+  }
+
+ 
+  
+
+
+
+
+
+
+
         const token = sessionStorage.getItem('token');
         console.log("Token from sessionStorage:", token); // Ensure this is not null or undefined
 
@@ -55,3 +88,4 @@ export async function login(email, password) {
         return []; // Return an empty array in case of error
     }
 }
+

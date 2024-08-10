@@ -5,7 +5,7 @@ import CustomNavbar from './Navbar'; // Adjust the path as necessary
 import { FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { fetchCategories } from '../services/admin'; // Adjust the path as necessary
 function Home() {
-  const [user, setUser] = useState({ name: 'John Doe', email: 'john@example.com' }); // Example user details
+ 
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
 
