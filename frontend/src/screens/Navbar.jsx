@@ -1,11 +1,16 @@
 import React from 'react';
 import { Navbar as BootstrapNavbar, Nav, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import { FiUser } from 'react-icons/fi';
 import './Navbar.css'; 
 
 const CustomNavbar = ({ categories }) => {
-  console.log('Categories in Navbar:', categories);
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (categoryId, categoryName) => {
+    console.log("Selected Category ID:", categoryId); // Do something with the category ID
+    navigate(`/category/${categoryId}`);
+  };
   return (
     <BootstrapNavbar bg="dark" variant="dark" expand="lg" fixed="top" className="custom-navbar">
       <BootstrapNavbar.Brand as={Link} to="/">
@@ -17,12 +22,15 @@ const CustomNavbar = ({ categories }) => {
       <Nav className="mr-auto">
           <Nav.Link as={Link} to="/booking-confirmation">My Bookings</Nav.Link>
           <NavDropdown title="Category">
-            {categories.map((cat) => (
-              <NavDropdown.Item key={cat.id} as={Link} to={`/category/${cat.categoryname}`}>
-                {cat.categoryname}
-              </NavDropdown.Item>
-            ))}
-          </NavDropdown>
+    {categories.map((cat) => (
+      <NavDropdown.Item
+        key={cat.id}
+        onClick={() => handleCategoryClick(cat.id, cat.categoryname)}
+      >
+        {cat.categoryname}
+      </NavDropdown.Item>
+    ))}
+  </NavDropdown>
         </Nav>
         <Nav className="ml-auto">
           <NavDropdown title={<FiUser />} id="profile-nav-dropdown" alignRight>

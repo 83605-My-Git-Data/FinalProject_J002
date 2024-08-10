@@ -29,6 +29,8 @@ export async function login(email, password) {
     const body = { email, password }
     try {
       const response = await axios.post(`${config.serverUrl}/login`, body)
+
+      console.log(response.data);
       return response.data
     } catch (ex) {
       console.log(`exception: `, ex)
@@ -38,20 +40,47 @@ export async function login(email, password) {
    
   }
 
-  export async function fetchCategories() {
+export async function fetchCategories() {
     try {
-        const token = sessionStorage.getItem('token');
-        console.log("Token from sessionStorage:", token); // Ensure this is not null or undefined
 
-        const response = await axios.get(`${config.serverUrl}/Categories`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        console.log(response.data);
-        return response.data; // This should be an array of categories
+      const response = await axios.get(`${config.serverUrl}/Categories`);
+      console.log(response.data);
+      return response.data; 
     } catch (error) {
-        console.error('Error fetching categories:', error);
-        return []; // Return an empty array in case of error
+      console.error('Error fetching categories:', error);
+      return [];
     }
+  }
+
+
+export async function fetchPhotographersByCategoryId(categoryId) {
+  try {
+    const response = await axios.get(`${config.serverUrl}/Categories/photographers?id=${categoryId}`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching photographers:', error);
+    return [];
+  }
 }
+
+
+
+
+//   export async function fetchCategories() {
+//     try {
+//         const token = sessionStorage.getItem('token');
+//         console.log("Token from sessionStorage:", token); // Ensure this is not null or undefined
+
+//         const response = await axios.get(`${config.serverUrl}/Categories`, {
+//             headers: {
+//                 Authorization: `Bearer ${token}`
+//             }
+//         });
+//         console.log(response.data);
+//         return response.data; // This should be an array of categories
+//     } catch (error) {
+//         console.error('Error fetching categories:', error);
+//         return []; // Return an empty array in case of error
+//     }
+// }
