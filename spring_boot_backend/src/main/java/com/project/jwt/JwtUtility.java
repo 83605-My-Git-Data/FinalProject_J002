@@ -66,6 +66,9 @@ public class JwtUtility implements Serializable {
         claims.put("id", userPrincipal.getId());
         claims.put("Role", userPrincipal.getRole());// id of user is stored
         claims.put("Name", userPrincipal.getFirstName()+" "+userPrincipal.getLastName());
+        claims.put("email", userPrincipal.getEmail());
+        claims.put("gender", userPrincipal.getGender());
+        claims.put("contactno", userPrincipal.getPhoneNo());
         
         // JWT: userName, issued at, exp date, digital signature (does not typically contain password, can contain authorities)
         return Jwts.builder() // JWTs: a Factory class used to create JWT tokens
