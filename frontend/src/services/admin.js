@@ -63,16 +63,8 @@ export async function login(email, password) {
     }
 
   }
-
- 
-  
-
-
-
-
-
-
-
+  export async function fetchCategories() {
+    try {
         const token = sessionStorage.getItem('token');
         console.log("Token from sessionStorage:", token); // Ensure this is not null or undefined
 
