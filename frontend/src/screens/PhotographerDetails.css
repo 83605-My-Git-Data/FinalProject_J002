@@ -1,0 +1,64 @@
+.photographer-details {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .photographer-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .photographer-profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .photographer-bio {
+    flex: 1;
+  }
+  
+  .photographer-photos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three photos per row */
+    gap: 20px;
+    position: relative;
+  }
+  
+  .photographer-photo-container {
+    position: relative;
+    overflow: hidden;
+    border: 4px solid transparent; /* Default border style */
+    border-radius: 10px; /* Rounded corners */
+    height: 200px; /* Adjust height here */
+    transition: filter 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  .photographer-photo-detail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  /* Hover effect */
+  .photographer-photo-container:hover {
+    border-color: #ff4081; /* Change border color on hover */
+  }
+  
+  .photographer-photo-container:hover .photographer-photo-detail {
+    transform: scale(1.1); /* Zoom in effect */
+    filter: grayscale(0); /* Remove grayscale */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow */
+  }
+  
+  /* Effect on all other photos when one is hovered */
+  .photographer-photos-grid:hover .photographer-photo-container:not(:hover) .photographer-photo-detail {
+    filter: blur(4px); /* Slightly blur other photos */
+  }
+  

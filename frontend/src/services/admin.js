@@ -52,8 +52,7 @@ export async function login(email, password) {
 
   export async function fetchPhotographersByCategoryId(categoryId) {
     try {
-      const response = await axios.get(`${config.serverUrl}/Categories/photographers?categoryId=${categoryId}`);
-      
+      const response = await axios.get(`${config.serverUrl}/Categories/photographers?id=${categoryId}`);
       console.log(response.data)
      
       return response.data;
@@ -63,6 +62,19 @@ export async function login(email, password) {
     }
 
   }
+  export async function fetchPhotographerImages(photographerId, categoryId) {
+    try {
+      const response = await axios.get(`${config.serverUrl}/images/${photographerId}/${categoryId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching photographer images:', error);
+      return [];
+    }
+  }
+  
+
+
+  
 //   export async function fetchCategories() {
 //     try {
 //         const token = sessionStorage.getItem('token');

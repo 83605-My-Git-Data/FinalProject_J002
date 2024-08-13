@@ -33,7 +33,6 @@
   border: 2px solid #333; /* Special border around name */
   border-radius: 5px;
   background-color: #f8f8f8;
-  font-size: 16px; /* Smaller font size for the name */
 }
 
 .photographer-card p {
@@ -44,5 +43,4 @@
   border-radius: 5px;
   background-color: #f8f8f8;
   margin-top: 5px;
-  font-size: 14px; /* Smaller font size for the price */
 }

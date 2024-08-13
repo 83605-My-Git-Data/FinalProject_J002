@@ -12,6 +12,7 @@ import Appointments from './screens/Appointments';
 import Navbar from "./screens/Navbar"
 
 import PhotographerGrid from './screens/PhotographerGrid';
+import PhotographerDetails from './screens/PhotographerDetails';
 
 
 
@@ -34,6 +35,8 @@ function App() {
 
         <Route path="/photographer-profile" element={<PhotographerProfile />} />
         <Route path="/category/:categoryId" element={<PhotographerGrid />} />
+        <Route path="/photographer/:photographerId/category/:categoryId" element={<PhotographerDetails />} />
+       
         
        
         
