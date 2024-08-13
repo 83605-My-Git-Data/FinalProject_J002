@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CategoryResponceDto {
 	
+	private Long id;
 	private String categoryname;
 
 }

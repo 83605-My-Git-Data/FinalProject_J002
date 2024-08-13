@@ -20,6 +20,10 @@ public interface PhotographerProfileService {
 	  public PhotographerdetailrespDTO getPhotographer(Long PhotographerId);
 	  
 	  public String getProfilePhotoPath(Long userId) ;
+	  
+	  String getBio(Long userId);
+	  
+	  String getExperience(Long userId);
 
 		}
 

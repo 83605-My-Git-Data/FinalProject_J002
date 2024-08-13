@@ -12,10 +12,12 @@ import com.project.dto.ApiResponse;
 import com.project.dto.PhotographerCategoriesReqDto;
 import com.project.service.PhotographerCategoriesService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/photographer/addcategory")
 public class PhotographerCategoryController {

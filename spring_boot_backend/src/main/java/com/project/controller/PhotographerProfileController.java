@@ -128,6 +128,23 @@ public class PhotographerProfileController {
          }
          return ResponseEntity.status(HttpStatus.OK).body(photoPath);
      }
+     
+     
+     
+     @GetMapping("/{userId}/Bio")
+     public ResponseEntity<String > getBio(@PathVariable Long userId)
+     {
+     	return ResponseEntity.status(HttpStatus.OK).body(photographerProfileService.getBio(userId));
+     	
+     }
+
+     	   
+     	@GetMapping("/{userId}/experience")
+     	public ResponseEntity<String> getexperience(@PathVariable Long  userId)
+     	{
+     		return ResponseEntity.status(HttpStatus.OK).body(photographerProfileService.getExperience(userId));
+     	}
+
  }
 	   
 	

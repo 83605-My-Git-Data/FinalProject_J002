@@ -20,6 +20,6 @@ public class ExperienceDTO {
 
 	
 
-	@NotNull(message = "Experience level is mandatory field")
+	
 	private Experience ExperienceLevel;
 }

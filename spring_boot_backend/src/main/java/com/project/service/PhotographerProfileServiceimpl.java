@@ -18,6 +18,7 @@ import com.project.dto.PhotographerdetailrespDTO;
 import com.project.dao.PhotographerProfileDao;
 import com.project.dao.RegisterDao;
 import com.project.custom_exceptions.ResourceNotFoundException;
+import com.project.entities.Experience;
 import com.project.entities.Photographer_Profile;
 import com.project.entities.Register;
 import com.project.entities.Role;
@@ -110,6 +111,7 @@ public class PhotographerProfileServiceimpl implements PhotographerProfileServic
 
 	@Override
 	public ApiResponse updateExperienceLevel(Long userId, ExperienceDTO experienceDTO) {
+		
 		Register register = registerDao.findById(userId).orElseThrow(()-> new ResourceNotFoundException("Invalid id"));
 		
 		  
@@ -123,6 +125,11 @@ public class PhotographerProfileServiceimpl implements PhotographerProfileServic
 		    Photographer_Profile profile = photographerProfileDao.findById(register.getId())
 		            .orElseThrow(() -> new ResourceNotFoundException("Photographer profile not found"));
 
+		   
+		    
+		
+		    
+		   
 		    
 		    profile.setExperienceLevel(experienceDTO.getExperienceLevel());
 
@@ -167,6 +174,26 @@ public class PhotographerProfileServiceimpl implements PhotographerProfileServic
 
 		
 	}
+	
+	
+
+
+	@Override
+	public String getBio(Long userId) {
+		
+	return photographerProfileDao.findBioByUserId(userId);
+	}
+
+
+
+
+
+	@Override
+	public String getExperience(Long userId) {
+		return photographerProfileDao.findExperienceByUserId(userId);
+		
+	}
+
 
 
 
