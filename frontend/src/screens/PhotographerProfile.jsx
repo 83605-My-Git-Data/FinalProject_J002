@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
-import {useLocation} from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const PhotographerProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -17,13 +17,13 @@ const PhotographerProfile = () => {
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const [description,setDescription] = useState("");
+  const [editingExperience, setEditingExperience] = useState(false);
+  const [editingServices, setEditingServices] = useState(false);
 
   const location = useLocation();
-
+  const navigate = useNavigate();
   const photographerId = location.state.id; // Hardcoded ID, replace with dynamic ID as needed
 
-  console.log("state " + JSON.stringify(location.state))
   useEffect(() => {
     if (photographerId) {
       setLoading(true);
@@ -31,9 +31,9 @@ const PhotographerProfile = () => {
         .then(response => {
           console.log(response.data);
           const {
-             profilePhoto, name, image, bio, description, price, phoneNumber            // profilePhoto, name, image, bio, price, phoneNumber
+            profilePhoto, name, image, bio, price, phoneNumber
           } = response.data;
-  
+
           setProfilePic(profilePhoto);
           setName(name);
           setPhotos(image || []); // Use image array from the response
@@ -41,9 +41,7 @@ const PhotographerProfile = () => {
           setPrice(price);
           setContact(phoneNumber);
           setGender(location.state.gender);
-          // setDescription(description);
           setEmail(location.state.sub);
-          // Note: Description is not used in the form fields, adjust if needed
         })
         .catch(error => {
           console.error('Error fetching profile details:', error);
@@ -55,7 +53,6 @@ const PhotographerProfile = () => {
       setLoading(false);
     }
   }, [photographerId]);
-  
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -69,6 +66,7 @@ const PhotographerProfile = () => {
       .then(() => {
         setProfilePic(URL.createObjectURL(file));
         alert('Profile picture uploaded successfully!');
+        navigate('/appointments');
       })
       .catch(error => console.error('Error uploading profile picture:', error));
   };
@@ -181,15 +179,37 @@ const PhotographerProfile = () => {
             </div>
             <div className="mb-3">
               <label className="form-label">Experience Level:</label>
-              <select
-                value={experience}
-                onChange={(e) => setExperience(e.target.value)}
-                className="form-select"
-              >
-                <option value="BEGINNER">BEGINNER</option>
-                <option value="INTERMEDIATE">INTERMEDIATE</option>
-                <option value="PROFESSIONAL">PROFESSIONAL</option>
-              </select>
+              {editingExperience ? (
+                <>
+                  <select
+                    value={experience}
+                    onChange={(e) => setExperience(e.target.value)}
+                    className="form-select"
+                  >
+                    <option value="BEGINNER">BEGINNER</option>
+                    <option value="INTERMEDIATE">INTERMEDIATE</option>
+                    <option value="PROFESSIONAL">PROFESSIONAL</option>
+                  </select>
+                  <button
+                    type="button"
+                    className="btn btn-primary mt-2"
+                    onClick={() => setEditingExperience(false)}
+                  >
+                    Save
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p>{experience}</p>
+                  <button
+                    type="button"
+                    className="btn btn-secondary mt-2"
+                    onClick={() => setEditingExperience(true)}
+                  >
+                    Edit Experience
+                  </button>
+                </>
+              )}
             </div>
             <div className="mb-3">
               <label className="form-label">Category:</label>
@@ -225,11 +245,33 @@ const PhotographerProfile = () => {
               <>
                 <div className="mb-3">
                   <label className="form-label">Services:</label>
-                  <textarea
-                    value={services}
-                    onChange={(e) => setServices(e.target.value)}
-                    className="form-control"
-                  ></textarea>
+                  {editingServices ? (
+                    <>
+                      <textarea
+                        value={services}
+                        onChange={(e) => setServices(e.target.value)}
+                        className="form-control"
+                      ></textarea>
+                      <button
+                        type="button"
+                        className="btn btn-primary mt-2"
+                        onClick={() => setEditingServices(false)}
+                      >
+                        Save
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <p>{services}</p>
+                      <button
+                        type="button"
+                        className="btn btn-secondary mt-2"
+                        onClick={() => setEditingServices(true)}
+                      >
+                        Edit Services
+                      </button>
+                    </>
+                  )}
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Price:</label>
@@ -279,7 +321,7 @@ const PhotographerProfile = () => {
                 ))}
               </div>
             </div>
-            <button type="submit"  className="btn btn-primary">Save Profile</button>
+            <button type="submit" className="btn btn-primary">Save Profile</button>
           </form>
         </div>
       </div>
