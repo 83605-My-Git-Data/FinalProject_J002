@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ import com.project.entities.Booking;
 import com.project.entities.Status;
 import com.project.service.BookingService;
 
-	
+@CrossOrigin("*")	
 @RestController
 @RequestMapping("bookings")
 public class BookingController {
