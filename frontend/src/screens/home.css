@@ -64,13 +64,14 @@
 .marquee-container {
   overflow: hidden;
   width: 100%;
-  background-color: #fff;
-  padding: 10px 0;
+  background-color: #161414;
+  padding: 15px 0;
 }
 
 .marquee {
   display: flex;
-  animation: scroll 25s linear infinite;
+  animation: scroll 20s linear infinite;
+  white-space: nowrap;
 }
 
 .marquee img {
@@ -87,5 +88,39 @@
   }
   100% {
     transform: translateX(-100%);
+  }
+}
+/* Make sure the container fits the full width of the page */
+.marquee-container {
+  overflow: hidden;
+  width: 100vw; /* Use viewport width to ensure it fits the whole page */
+  background-color: #fff;
+  padding: 10px 0;
+  position: relative; /* Ensure the container is positioned relative */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.marquee {
+  display: flex;
+  animation: scroll 20s linear infinite;
+  white-space: nowrap; /* Ensure images are in a single line */
+  width: 200%; /* This ensures enough space for scrolling; adjust as needed */
+}
+
+.marquee img {
+  margin: 0 10px;
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Keyframes for the continuous scrolling effect */
+@keyframes scroll {
+  0% {
+    transform: translateX(0); /* Start at the beginning */
+  }
+  100% {
+    transform: translateX(-50%); /* Move to the end */
   }
 }
