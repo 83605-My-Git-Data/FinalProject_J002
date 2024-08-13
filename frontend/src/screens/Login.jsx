@@ -26,9 +26,9 @@
             sessionStorage.setItem('name', result.email);
             sessionStorage.setItem('token', result.jwt);
             const decodedToken = jwtDecode(result.jwt);
-
+            console.log(decodedToken);
             if (decodedToken.Role === "ROLE_PHOTOGRAPHER") {
-              navigate('/home');
+              navigate(`/photographer_profile/${decodedToken.id}/photographerdetails`,{state : decodedToken});
             } else if (decodedToken.Role === "ROLE_USER") {
               // Route to user page
               navigate('/home');

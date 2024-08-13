@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
+import {useLocation} from 'react-router-dom';
 
 const PhotographerProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -9,37 +10,40 @@ const PhotographerProfile = () => {
   const [gender, setGender] = useState('');
   const [contact, setContact] = useState('');
   const [bio, setBio] = useState('');
-  const [experience, setExperience] = useState('');
+  const [experience, setExperience] = useState('BEGINNER');
   const [category, setCategory] = useState('');
   const [services, setServices] = useState('');
   const [price, setPrice] = useState('');
-  const [photos, setPhotos] = useState([]); // Ensure photos is always an array
+  const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  // const [description,setDescription] = useState("");
 
-  const photographerId = 10; // Hardcoded ID
+  const location = useLocation();
 
+  const photographerId = location.state.id; // Hardcoded ID, replace with dynamic ID as needed
+
+  console.log("state " + JSON.stringify(location.state))
   useEffect(() => {
     if (photographerId) {
       setLoading(true);
       axios.get(`http://localhost:8080/photographer_profile/${photographerId}/photographerdetails`)
         .then(response => {
+          console.log(response.data);
           const {
-            profilePhoto, name, email, gender, contact,
-            Bio, ExperienceLevel, Category, Services, Price, Photos
+             profilePhoto, name, image, bio, description, price, phoneNumber            // profilePhoto, name, image, bio, price, phoneNumber
           } = response.data;
-
+  
           setProfilePic(profilePhoto);
           setName(name);
-          setEmail(email);
-          setGender(gender);
-          setContact(contact);
-          setBio(Bio);
-          setExperience(ExperienceLevel);
-          setCategory(Category);
-          setServices(Services);
-          setPrice(Price);
-          setPhotos(Photos || []); // Fallback to empty array if Photos is undefined
+          setPhotos(image || []); // Use image array from the response
+          setBio(bio);
+          setPrice(price);
+          setContact(phoneNumber);
+          setGender(location.state.gender);
+          // setDescription(description);
+          setEmail(location.state.sub);
+          // Note: Description is not used in the form fields, adjust if needed
         })
         .catch(error => {
           console.error('Error fetching profile details:', error);
@@ -51,6 +55,7 @@ const PhotographerProfile = () => {
       setLoading(false);
     }
   }, [photographerId]);
+  
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -74,7 +79,7 @@ const PhotographerProfile = () => {
     files.forEach(file => formData.append('photos', file));
 
     axios.post(`http://localhost:8080/photographer_profile/uploadPhotos/${photographerId}`, formData)
-      .then(response => {
+      .then(() => {
         const newPhotos = files.map(file => URL.createObjectURL(file));
         setPhotos(prevPhotos => [...prevPhotos, ...newPhotos]);
       })
@@ -135,7 +140,6 @@ const PhotographerProfile = () => {
               <input
                 type="text"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
                 className="form-control"
                 disabled
               />
@@ -145,7 +149,6 @@ const PhotographerProfile = () => {
               <input
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 className="form-control"
                 disabled
               />
@@ -155,7 +158,6 @@ const PhotographerProfile = () => {
               <input
                 type="text"
                 value={gender}
-                onChange={(e) => setGender(e.target.value)}
                 className="form-control"
                 disabled
               />
@@ -165,7 +167,6 @@ const PhotographerProfile = () => {
               <input
                 type="text"
                 value={contact}
-                onChange={(e) => setContact(e.target.value)}
                 className="form-control"
                 disabled
               />
@@ -220,23 +221,27 @@ const PhotographerProfile = () => {
                 )}
               </div>
             </div>
-            <div className="mb-3">
-              <label className="form-label">Services:</label>
-              <textarea
-                value={services}
-                onChange={(e) => setServices(e.target.value)}
-                className="form-control"
-              ></textarea>
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Price:</label>
-              <input
-                type="text"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                className="form-control"
-              />
-            </div>
+            {category && (
+              <>
+                <div className="mb-3">
+                  <label className="form-label">Services:</label>
+                  <textarea
+                    value={services}
+                    onChange={(e) => setServices(e.target.value)}
+                    className="form-control"
+                  ></textarea>
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Price:</label>
+                  <input
+                    type="text"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    className="form-control"
+                  />
+                </div>
+              </>
+            )}
             <div className="mb-3">
               <label className="form-label">Upload Photos:</label>
               <button
@@ -274,7 +279,7 @@ const PhotographerProfile = () => {
                 ))}
               </div>
             </div>
-            <button type="submit" className="btn btn-primary">Save Profile</button>
+            <button type="submit"  className="btn btn-primary">Save Profile</button>
           </form>
         </div>
       </div>
