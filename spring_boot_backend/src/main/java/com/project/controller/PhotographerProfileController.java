@@ -81,6 +81,8 @@ public class PhotographerProfileController {
 	
 	
 	
+	
+	
 	   @PostMapping("/uploadProfilePic/{userId}")
 	    public ResponseEntity<String> uploadProfilePic(@PathVariable Long userId,
 	                                                   @RequestParam("file") MultipartFile file) 
@@ -108,16 +110,7 @@ public class PhotographerProfileController {
          return new ResponseEntity<>("File upload failed: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
      }
  }
-     @GetMapping("/{id}/photographerdetails")
-	   public ResponseEntity<PhotographerdetailrespDTO>  getPhotographerdetail(@PathVariable("id") Long PhotographerId)
-	   {
-		   PhotographerdetailrespDTO photographerDetail = photographerProfileService.getPhotographer(PhotographerId);
-	        if (photographerDetail == null) {
-	            return ResponseEntity.notFound().build();
-	        }
-	        return ResponseEntity.ok(photographerDetail);
-	   }
-	   
+    
      
 
      @GetMapping("/{userId}/profile-photo")
@@ -128,11 +121,23 @@ public class PhotographerProfileController {
          }
          return ResponseEntity.status(HttpStatus.OK).body(photoPath);
      }
- }
-	   
-	
-	
+ 
 
+@GetMapping("/{userId}/Bio")
+public ResponseEntity<String > getBio(@PathVariable Long userId)
+{
+	return ResponseEntity.status(HttpStatus.OK).body(photographerProfileService.getBio(userId));
+	
+}
+
+	   
+	@GetMapping("/{userId}/experience")
+	public ResponseEntity<String> getexperience(@PathVariable Long  userId)
+	{
+		return ResponseEntity.status(HttpStatus.OK).body(photographerProfileService.getExperience(userId));
+	}
+	
+}
 
 
 

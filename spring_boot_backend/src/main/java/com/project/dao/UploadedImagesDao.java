@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.project.entities.Categories;
+import com.project.entities.Photographer_Profile;
 import com.project.entities.Uploaded_Images;
 
 public interface UploadedImagesDao extends JpaRepository<Uploaded_Images,Long > {
@@ -16,6 +18,9 @@ public interface UploadedImagesDao extends JpaRepository<Uploaded_Images,Long > 
 		       "JOIN U.category C " +
 		       "WHERE C.id = :id")
 		List<Object[]> findImagesByCategoryId(@Param("id") Long id);
+		
+		
+		List<Uploaded_Images> findByPhotographerAndCategory(Photographer_Profile photographer, Categories category);
 		
 		
 		

@@ -141,20 +141,7 @@ public class PhotographerProfileServiceimpl implements PhotographerProfileServic
 
 
 
-	@Override
-	public PhotographerdetailrespDTO getPhotographer(Long PhotographerId) {
-		
-		PhotographerdetailrespDTO photographerdetail=photographerProfileDao.findPhotographerBasicDetailById(PhotographerId);
-		  
-        if (photographerdetail != null) {
-            List<String> images = photographerProfileDao.findImagesByPhotographerId(PhotographerId);
-            photographerdetail.setImage(images); 
-        }
-
-        return photographerdetail;
-
-	}
-
+	
 
 
 
@@ -166,7 +153,31 @@ public class PhotographerProfileServiceimpl implements PhotographerProfileServic
 		    
 
 		
+		        
+		        
 	}
+
+
+
+
+
+	@Override
+	public String getBio(Long userId) {
+		
+	return photographerProfileDao.findBioByUserId(userId);
+	}
+
+
+
+
+
+	@Override
+	public String getExperience(Long userId) {
+		return photographerProfileDao.findExperienceByUserId(userId);
+		
+	}
+	
+	
 
 
 
