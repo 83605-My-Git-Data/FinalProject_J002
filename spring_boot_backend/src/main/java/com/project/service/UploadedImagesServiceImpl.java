@@ -61,7 +61,7 @@ public class UploadedImagesServiceImpl implements UploadedImagesService {
 	for(MultipartFile file:files)
 	{
 		String fileName=file.getOriginalFilename();
-		 Path filePath = java.nio.file.Paths.get("profile_pics", fileName);
+		 Path filePath = java.nio.file.Paths.get("files", fileName);
 		 
 		 Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 		 
