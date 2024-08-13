@@ -18,7 +18,7 @@ import img8 from '../screens/img8.jpg'
 
 
 function Home() {
-  const [user, setUser] = useState({ name: 'John Doe', email: 'john@example.com' }); // Example user details
+ 
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
 
