@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const PhotographerProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -9,37 +10,38 @@ const PhotographerProfile = () => {
   const [gender, setGender] = useState('');
   const [contact, setContact] = useState('');
   const [bio, setBio] = useState('');
-  const [experience, setExperience] = useState('');
+  const [experience, setExperience] = useState('BEGINNER');
   const [category, setCategory] = useState('');
   const [services, setServices] = useState('');
   const [price, setPrice] = useState('');
-  const [photos, setPhotos] = useState([]); // Ensure photos is always an array
+  const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [editingExperience, setEditingExperience] = useState(false);
+  const [editingServices, setEditingServices] = useState(false);
 
-  const photographerId = 10; // Hardcoded ID
+  const location = useLocation();
+  const navigate = useNavigate();
+  const photographerId = location.state.id; // Hardcoded ID, replace with dynamic ID as needed
 
   useEffect(() => {
     if (photographerId) {
       setLoading(true);
       axios.get(`http://localhost:8080/photographer_profile/${photographerId}/photographerdetails`)
         .then(response => {
+          console.log(response.data);
           const {
-            profilePhoto, name, email, gender, contact,
-            Bio, ExperienceLevel, Category, Services, Price, Photos
+            profilePhoto, name, image, bio, price, phoneNumber
           } = response.data;
 
           setProfilePic(profilePhoto);
           setName(name);
-          setEmail(email);
-          setGender(gender);
-          setContact(contact);
-          setBio(Bio);
-          setExperience(ExperienceLevel);
-          setCategory(Category);
-          setServices(Services);
-          setPrice(Price);
-          setPhotos(Photos || []); // Fallback to empty array if Photos is undefined
+          setPhotos(image || []); // Use image array from the response
+          setBio(bio);
+          setPrice(price);
+          setContact(phoneNumber);
+          setGender(location.state.gender);
+          setEmail(location.state.sub);
         })
         .catch(error => {
           console.error('Error fetching profile details:', error);
@@ -64,6 +66,7 @@ const PhotographerProfile = () => {
       .then(() => {
         setProfilePic(URL.createObjectURL(file));
         alert('Profile picture uploaded successfully!');
+        navigate('/appointments');
       })
       .catch(error => console.error('Error uploading profile picture:', error));
   };
@@ -74,7 +77,7 @@ const PhotographerProfile = () => {
     files.forEach(file => formData.append('photos', file));
 
     axios.post(`http://localhost:8080/photographer_profile/uploadPhotos/${photographerId}`, formData)
-      .then(response => {
+      .then(() => {
         const newPhotos = files.map(file => URL.createObjectURL(file));
         setPhotos(prevPhotos => [...prevPhotos, ...newPhotos]);
       })
@@ -135,7 +138,6 @@ const PhotographerProfile = () => {
               <input
                 type="text"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
                 className="form-control"
                 disabled
               />
@@ -145,7 +147,6 @@ const PhotographerProfile = () => {
               <input
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 className="form-control"
                 disabled
               />
@@ -155,7 +156,6 @@ const PhotographerProfile = () => {
               <input
                 type="text"
                 value={gender}
-                onChange={(e) => setGender(e.target.value)}
                 className="form-control"
                 disabled
               />
@@ -165,7 +165,6 @@ const PhotographerProfile = () => {
               <input
                 type="text"
                 value={contact}
-                onChange={(e) => setContact(e.target.value)}
                 className="form-control"
                 disabled
               />
@@ -180,15 +179,37 @@ const PhotographerProfile = () => {
             </div>
             <div className="mb-3">
               <label className="form-label">Experience Level:</label>
-              <select
-                value={experience}
-                onChange={(e) => setExperience(e.target.value)}
-                className="form-select"
-              >
-                <option value="BEGINNER">BEGINNER</option>
-                <option value="INTERMEDIATE">INTERMEDIATE</option>
-                <option value="PROFESSIONAL">PROFESSIONAL</option>
-              </select>
+              {editingExperience ? (
+                <>
+                  <select
+                    value={experience}
+                    onChange={(e) => setExperience(e.target.value)}
+                    className="form-select"
+                  >
+                    <option value="BEGINNER">BEGINNER</option>
+                    <option value="INTERMEDIATE">INTERMEDIATE</option>
+                    <option value="PROFESSIONAL">PROFESSIONAL</option>
+                  </select>
+                  <button
+                    type="button"
+                    className="btn btn-primary mt-2"
+                    onClick={() => setEditingExperience(false)}
+                  >
+                    Save
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p>{experience}</p>
+                  <button
+                    type="button"
+                    className="btn btn-secondary mt-2"
+                    onClick={() => setEditingExperience(true)}
+                  >
+                    Edit Experience
+                  </button>
+                </>
+              )}
             </div>
             <div className="mb-3">
               <label className="form-label">Category:</label>
@@ -220,23 +241,49 @@ const PhotographerProfile = () => {
                 )}
               </div>
             </div>
-            <div className="mb-3">
-              <label className="form-label">Services:</label>
-              <textarea
-                value={services}
-                onChange={(e) => setServices(e.target.value)}
-                className="form-control"
-              ></textarea>
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Price:</label>
-              <input
-                type="text"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                className="form-control"
-              />
-            </div>
+            {category && (
+              <>
+                <div className="mb-3">
+                  <label className="form-label">Services:</label>
+                  {editingServices ? (
+                    <>
+                      <textarea
+                        value={services}
+                        onChange={(e) => setServices(e.target.value)}
+                        className="form-control"
+                      ></textarea>
+                      <button
+                        type="button"
+                        className="btn btn-primary mt-2"
+                        onClick={() => setEditingServices(false)}
+                      >
+                        Save
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <p>{services}</p>
+                      <button
+                        type="button"
+                        className="btn btn-secondary mt-2"
+                        onClick={() => setEditingServices(true)}
+                      >
+                        Edit Services
+                      </button>
+                    </>
+                  )}
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Price:</label>
+                  <input
+                    type="text"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    className="form-control"
+                  />
+                </div>
+              </>
+            )}
             <div className="mb-3">
               <label className="form-label">Upload Photos:</label>
               <button
