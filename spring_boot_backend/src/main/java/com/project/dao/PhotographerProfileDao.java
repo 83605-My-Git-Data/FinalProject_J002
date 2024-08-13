@@ -11,6 +11,13 @@ import com.project.entities.Photographer_Profile;
 
 public interface PhotographerProfileDao  extends JpaRepository<Photographer_Profile, Long>{
 	
+	
+
+	    @Query("SELECT p.profilePhoto FROM Photographer_Profile p WHERE p.userId = :userId")
+	    String findProfilePhotoPathByUserId(@Param("userId") Long userId);
+	
+
+	
 	 boolean existsByUserId(Long userId);
 	 
 	

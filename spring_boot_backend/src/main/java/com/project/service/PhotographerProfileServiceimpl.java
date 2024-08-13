@@ -133,7 +133,10 @@ public class PhotographerProfileServiceimpl implements PhotographerProfileServic
 		    return new ApiResponse("Experience updated successfully");
 		    
 	}
+	
+	
 
+ 
 
 
 
@@ -150,6 +153,19 @@ public class PhotographerProfileServiceimpl implements PhotographerProfileServic
 
         return photographerdetail;
 
+	}
+
+
+
+
+
+	@Override
+	public String getProfilePhotoPath(Long userId) {
+		  
+		        return photographerProfileDao.findProfilePhotoPathByUserId(userId);
+		    
+
+		
 	}
 
 

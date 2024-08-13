@@ -29,6 +29,8 @@ export async function login(email, password) {
     const body = { email, password }
     try {
       const response = await axios.post(`${config.serverUrl}/login`, body)
+
+      console.log(response.data);
       return response.data
     } catch (ex) {
       console.log(`exception: `, ex)
@@ -38,7 +40,7 @@ export async function login(email, password) {
    
   }
 
-  export async function fetchCategories() {
+export async function fetchCategories() {
     try {
 
       const response = await axios.get(`${config.serverUrl}/Categories`);
@@ -49,6 +51,7 @@ export async function login(email, password) {
       return [];
     }
   }
+
 
   export async function fetchPhotographersByCategoryId(categoryId) {
     try {
@@ -62,6 +65,13 @@ export async function login(email, password) {
     }
 
   }
+
+
+
+
+
+
+
   export async function fetchPhotographerImages(photographerId, categoryId) {
     try {
       const response = await axios.get(`${config.serverUrl}/images/${photographerId}/${categoryId}`);
@@ -75,6 +85,13 @@ export async function login(email, password) {
 
 
   
+
+
+
+
+
+
+
 //   export async function fetchCategories() {
 //     try {
 //         const token = sessionStorage.getItem('token');
