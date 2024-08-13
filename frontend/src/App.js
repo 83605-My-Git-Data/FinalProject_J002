@@ -3,14 +3,22 @@ import Login from './screens/Login'
 import Register from './screens/Register'
 import { ToastContainer } from 'react-toastify'
 import Home from './screens/Home'
-import Category from './screens/Category'
+
 import PhotographerProfile from './screens/PhotographerProfile'
-import PhotographerPhotos from './screens/PhotographerPhotos'
+
 import Booking from './screens/Booking';
 import BookingConfirm from './screens/BookingConfirm';
 import Appointments from './screens/Appointments';
 import Navbar from "./screens/Navbar";
 import PhotographerGrid from './screens/PhotographerGrid';
+
+import PhotographerGrid from './screens/PhotographerGrid';
+import PhotographerDetails from './screens/PhotographerDetails';
+
+
+
+
+
 
 
 function App() {
@@ -21,11 +29,27 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
+
+        <Route path="/photographer_profile/:id/photographerdetails" element={<PhotographerProfile />} />
+        
+        
+
         <Route path="/photographer-profile" element={<PhotographerProfile />} />
         <Route path="/category/:categoryId" element={<PhotographerGrid />} />
+
+        <Route path="/photographer/:photographerId/category/:categoryId" element={<PhotographerDetails />} />
+       
+        
+       
+        
+      
+       
+
+
         <Route path="/category/:categoryName" element={<Category />} />
         <Route path="/photographer/:photographerId/photos" element={<PhotographerPhotos />} />
        
+
         {/* <Route path="/" element={<Booking/>} /> */}
         <Route path="/booking" element={<Booking />} />
          <Route path="/booking-confirmation" element={<BookingConfirm/>} ></Route>

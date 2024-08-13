@@ -53,16 +53,41 @@ export async function fetchCategories() {
   }
 
 
-export async function fetchPhotographersByCategoryId(categoryId) {
-  try {
-    const response = await axios.get(`${config.serverUrl}/Categories/photographers?id=${categoryId}`);
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching photographers:', error);
-    return [];
+  export async function fetchPhotographersByCategoryId(categoryId) {
+    try {
+      const response = await axios.get(`${config.serverUrl}/Categories/photographers?id=${categoryId}`);
+      console.log(response.data)
+     
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching photographers:', error);
+      return [];
+    }
+
   }
-}
+
+
+
+
+
+
+
+  export async function fetchPhotographerImages(photographerId, categoryId) {
+    try {
+      const response = await axios.get(`${config.serverUrl}/images/${photographerId}/${categoryId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching photographer images:', error);
+      return [];
+    }
+  }
+  
+
+
+  
+
+
+
 
 
 
@@ -84,3 +109,4 @@ export async function fetchPhotographersByCategoryId(categoryId) {
 //         return []; // Return an empty array in case of error
 //     }
 // }
+
