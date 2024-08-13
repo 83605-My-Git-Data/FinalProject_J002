@@ -15,7 +15,7 @@ public interface PhotographerCategoriesDao extends JpaRepository<Photographer_Ca
 	boolean existsByPhotographerAndCategory(Photographer_Profile photographer, Categories category);
 	
 
-	@Query("SELECT new com.project.dto.CategoryResponceDto(c.categoryname) " +
+	@Query("SELECT new com.project.dto.CategoryResponceDto(c.id,c.categoryname) " +
 	           "FROM Photographer_Categories pc " +
 	           "JOIN pc.category c " +
 	           "WHERE pc.photographer.id = :userId")

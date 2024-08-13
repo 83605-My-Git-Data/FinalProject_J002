@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify'
 import Home from './screens/Home'
 
 import PhotographerProfile from './screens/PhotographerProfile'
+import AddPhotos from "./screens/AddPhotos"
 
 import Booking from './screens/Booking';
 import BookingConfirm from './screens/BookingConfirm';
@@ -37,7 +38,7 @@ function App() {
         <Route path="/category/:categoryId" element={<PhotographerGrid />} />
         <Route path="/photographer/:photographerId/category/:categoryId" element={<PhotographerDetails />} />
        
-        
+        <Route path="/AddPhotos" element={<AddPhotos/>} />
        
         
       

@@ -42,6 +42,9 @@ public class PhotographerCategoriesServiceimpl  implements PhotographerCategorie
 	@Override
 	public ApiResponse addCategoryToPhotogarpher(PhotographerCategoriesReqDto photographerCategoriesReqDto) {
 		
+		System.out.println(photographerCategoriesReqDto.getCid());
+		System.out.println(photographerCategoriesReqDto.getPid());
+		
 		
 	Photographer_Profile photographer = photographerProfileDao.findById(photographerCategoriesReqDto.getPid()).orElseThrow(()->new ResourceNotFoundException("Invalid photographer id"));
 
