@@ -18,6 +18,8 @@ public interface PhotographerProfileService {
 	  public ApiResponse updateExperienceLevel(Long userId,ExperienceDTO experienceDTO);
 	  
 	  public PhotographerdetailrespDTO getPhotographer(Long PhotographerId);
+	  
+	  public String getProfilePhotoPath(Long userId) ;
 
 		}
 
