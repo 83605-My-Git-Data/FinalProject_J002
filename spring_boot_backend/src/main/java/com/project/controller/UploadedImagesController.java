@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,23 @@ public class UploadedImagesController {
 	    	 List<Uploaded_Images> uploadedImages = uploadedImageService.Addimages(photographerid, categoryid, files);
 				return new ResponseEntity<>(uploadedImages, HttpStatus.CREATED);
 	    }
+	    
+	    
+	    
+	    @GetMapping("/{photographerid}/{categoryid}")
+	    public ResponseEntity<List<Uploaded_Images>> getImages(@PathVariable Long photographerid,
+	                                                       @PathVariable Long categoryid) {
+	    List<Uploaded_Images> images = uploadedImageService.getImages(photographerid, categoryid);
+	    return new ResponseEntity<>(images, HttpStatus.OK);
+	    }
+	    
+	    
+	
+
 	}
+
+
+
 
 	
 
