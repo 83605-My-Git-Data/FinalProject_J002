@@ -9,8 +9,7 @@ import PhotographerProfile from './screens/PhotographerProfile'
 import Booking from './screens/Booking';
 import BookingConfirm from './screens/BookingConfirm';
 import Appointments from './screens/Appointments';
-import Navbar from "./screens/Navbar";
-import PhotographerGrid from './screens/PhotographerGrid';
+import Navbar from "./screens/Navbar"
 
 import PhotographerGrid from './screens/PhotographerGrid';
 import PhotographerDetails from './screens/PhotographerDetails';
@@ -36,18 +35,12 @@ function App() {
 
         <Route path="/photographer-profile" element={<PhotographerProfile />} />
         <Route path="/category/:categoryId" element={<PhotographerGrid />} />
-
         <Route path="/photographer/:photographerId/category/:categoryId" element={<PhotographerDetails />} />
        
         
        
         
       
-       
-
-
-        <Route path="/category/:categoryName" element={<Category />} />
-        <Route path="/photographer/:photographerId/photos" element={<PhotographerPhotos />} />
        
 
         {/* <Route path="/" element={<Booking/>} /> */}
