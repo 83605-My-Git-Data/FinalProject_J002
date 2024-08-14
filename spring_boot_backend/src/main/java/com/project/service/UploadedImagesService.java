@@ -12,7 +12,7 @@ import com.project.entities.Uploaded_Images;
 public interface UploadedImagesService {
 	
 	public List<Uploaded_Images> Addimages(Long PhotographerId,Long CategoryId,List<MultipartFile> files ) throws IOException;
-	
+	 List<Uploaded_Images> getImages(Long photographerId, Long categoryId);
 	
 
 }

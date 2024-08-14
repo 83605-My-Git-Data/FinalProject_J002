@@ -27,8 +27,11 @@ export async function register(firstName,lastName,email,phoneNo,password,gender,
 
 export async function login(email, password) {
     const body = { email, password }
+    
     try {
-      const response = await axios.post(`${config.serverUrl}/login`, body)
+      const response = await axios.post(`${config.serverUrl}/login`,body)
+
+      console.log(response.data);
       return response.data
     } catch (ex) {
       console.log(`exception: `, ex)
@@ -37,6 +40,68 @@ export async function login(email, password) {
     return null
    
   }
+
+// export async function fetchCategories() {
+//     try {
+
+//       const response = await axios.get(`${config.serverUrl}/Categories`);
+//       console.log(response.data);
+//       return response.data; 
+//     } catch (error) {
+//       console.error('Error fetching categories:', error);
+//       return [];
+//     }
+//   }
+
+
+  export async function fetchPhotographersByCategoryId(categoryId) {
+    try {
+      const token = sessionStorage.getItem('token');
+      const response = await axios.get(`${config.serverUrl}/Categories/photographers?id=${categoryId}`, {
+        headers: {
+        Authorization: `Bearer ${token}`
+        }
+    });
+      console.log(response.data)
+     
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching photographers:', error);
+      return [];
+    }
+
+  }
+
+
+
+
+
+
+
+  export async function fetchPhotographerImages(photographerId, categoryId) {
+    try {
+      const token = sessionStorage.getItem('token');
+      const response = await axios.get(`${config.serverUrl}/images/${photographerId}/${categoryId}`, {
+        headers: {
+        Authorization: `Bearer ${token}`
+        }
+    });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching photographer images:', error);
+      return [];
+    }
+  }
+  
+
+
+  
+
+
+
+
+
+
 
   export async function fetchCategories() {
     try {
@@ -55,3 +120,4 @@ export async function login(email, password) {
         return []; // Return an empty array in case of error
     }
 }
+

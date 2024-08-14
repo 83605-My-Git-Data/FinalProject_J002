@@ -12,7 +12,11 @@ import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.custom_exceptions.ResourceNotFoundException;
@@ -61,7 +65,7 @@ public class UploadedImagesServiceImpl implements UploadedImagesService {
 	for(MultipartFile file:files)
 	{
 		String fileName=file.getOriginalFilename();
-		 Path filePath = java.nio.file.Paths.get("profile_pics", fileName);
+		 Path filePath = java.nio.file.Paths.get("files", fileName);
 		 
 		 Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 		 
@@ -83,10 +87,25 @@ public class UploadedImagesServiceImpl implements UploadedImagesService {
 	
 	
 	}
+	
+	
+	@Override
+  public List<Uploaded_Images> getImages(Long photographerId, Long categoryId) {
+      Photographer_Profile photographer = photographerProfileDao.findById(photographerId)
+          .orElseThrow(() -> new ResourceNotFoundException("Photographer not found"));
+
+      Categories category = categoriesDao.findById(categoryId)
+          .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+
+      return uploadedImagesDao.findByPhotographerAndCategory(photographer, category);
+  }
 
 
 
 	}
+
+
+	
 
 	
 	

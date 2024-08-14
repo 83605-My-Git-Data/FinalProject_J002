@@ -46,6 +46,9 @@ public class ServicesServiceImpl implements ServicesService {
 
 	@Override
 	public ApiResponse addAService(ServicesDto servicesDto) {
+		
+		System.out.println(servicesDto.getPhotographerid());
+		System.out.println(servicesDto.getCategoryid());
 		System.out.println("inside service");
 		
 		Photographer_Profile profile= photographerProfileDao.findById(servicesDto.getPhotographerid())

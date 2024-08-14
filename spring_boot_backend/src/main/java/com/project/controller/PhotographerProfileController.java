@@ -85,9 +85,6 @@ public class PhotographerProfileController {
 	    public ResponseEntity<String> uploadProfilePic(@PathVariable Long userId,
 	                                                   @RequestParam("file") MultipartFile file) 
 	   {
-	
-		   
-		   
 		   try {
                
          File directory = new File(uploadDir); // Create the directory if it doesn't exist
@@ -121,11 +118,39 @@ public class PhotographerProfileController {
 	        return ResponseEntity.ok(photographerDetail);
 	   }
 	   
+     
+
+     @GetMapping("/{userId}/profile-photo")
+     public ResponseEntity<String> getProfilePhoto(@PathVariable Long userId) {
+         String photoPath = photographerProfileService.getProfilePhotoPath(userId);
+         if (photoPath == null) {
+             return ResponseEntity.notFound().build();
+         }
+         return ResponseEntity.status(HttpStatus.OK).body(photoPath);
+     }
+     
+     
+     
+     @GetMapping("/{userId}/Bio")
+     public ResponseEntity<String > getBio(@PathVariable Long userId)
+     {
+     	return ResponseEntity.status(HttpStatus.OK).body(photographerProfileService.getBio(userId));
+     	
+     }
+
+     	   
+     	@GetMapping("/{userId}/experience")
+     	public ResponseEntity<String> getexperience(@PathVariable Long  userId)
+     	{
+     		return ResponseEntity.status(HttpStatus.OK).body(photographerProfileService.getExperience(userId));
+     	}
+
+ }
 	   
 	
 	
 
-}
+
 
 
 

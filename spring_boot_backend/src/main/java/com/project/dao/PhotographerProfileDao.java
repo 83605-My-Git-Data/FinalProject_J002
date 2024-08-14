@@ -11,6 +11,13 @@ import com.project.entities.Photographer_Profile;
 
 public interface PhotographerProfileDao  extends JpaRepository<Photographer_Profile, Long>{
 	
+	
+
+	    @Query("SELECT p.profilePhoto FROM Photographer_Profile p WHERE p.userId = :userId")
+	    String findProfilePhotoPathByUserId(@Param("userId") Long userId);
+	
+
+	
 	 boolean existsByUserId(Long userId);
 	 
 	
@@ -28,6 +35,22 @@ public interface PhotographerProfileDao  extends JpaRepository<Photographer_Prof
 	           "FROM Uploaded_Images i " +
 	           "WHERE i.photographer.id = :photographerId")
 	    List<String> findImagesByPhotographerId(@Param("photographerId") Long photographerId);
+	    
+	    
+	    
+	    
+	    @Query("SELECT p.Bio FROM Photographer_Profile p WHERE p.userId=:userId")
+	    String findBioByUserId(@Param("userId")Long userId);
+	    
+	    
+	    @Query("SELECT p.ExperienceLevel FROM Photographer_Profile p where p.userId=:userId")
+	    String findExperienceByUserId(@Param("userId")Long userId);
+
+	    
+	    
+	    
+	    
+	    
 	}
 		
 
