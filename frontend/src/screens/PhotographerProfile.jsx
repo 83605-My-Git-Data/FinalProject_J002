@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaTrash } from 'react-icons/fa';
 import { jwtDecode } from 'jwt-decode';
+import { config } from '../services/config';
 
 const PhotographerProfile = () => {
   const jwt = sessionStorage.getItem('token');
@@ -38,7 +39,11 @@ const PhotographerProfile = () => {
     const fetchProfileData = async () => {
       try {
         // Fetch profile photo
-        const photoResponse = await axios.get(`http://localhost:8080/photographer_profile/${photographerId}/profile-photo`);
+        const token = sessionStorage.getItem('token');
+        const photoResponse = await axios.get(`${config.serverUrl}/photographer_profile/${photographerId}/profile-photo`, {
+          headers: {
+          Authorization: `Bearer ${token}`
+          }});
         if (photoResponse.data) {
           setProfilePic(photoResponse.data);
         } else {
@@ -46,15 +51,24 @@ const PhotographerProfile = () => {
         }
 
         // Fetch categories
-        const categoriesResponse = await axios.get('http://localhost:8080/Categories');
+        const categoriesResponse = await axios.get(`${config.serverUrl}/Categories`, {
+          headers: {
+          Authorization: `Bearer ${token}`
+          }});
         setCategories(categoriesResponse.data);
 
         // Fetch bio
-        const bioResponse = await axios.get(`http://localhost:8080/photographer_profile/${photographerId}/Bio`);
+        const bioResponse = await axios.get(`${config.serverUrl}/photographer_profile/${photographerId}/Bio`,{
+          headers: {
+          Authorization: `Bearer ${token}`
+          }});
         setBio(bioResponse.data);
 
         // Fetch experience
-        const experienceResponse = await axios.get(`http://localhost:8080/photographer_profile/${photographerId}/experience`);
+        const experienceResponse = await axios.get(`${config.serverUrl}/photographer_profile/${photographerId}/experience`,{
+          headers: {
+          Authorization: `Bearer ${token}`
+          }});
         setExperience(experienceResponse.data);
       } catch (error) {
         console.error('Error fetching profile data:', error);
@@ -65,13 +79,17 @@ const PhotographerProfile = () => {
   }, [photographerId]);
 
   const handleProfilePicChange = (e) => {
+    const token = sessionStorage.getItem('token');
     const file = e.target.files[0];
     if (!file) return;
 
     const formData = new FormData();
     formData.append('file', file);
 
-    axios.post(`http://localhost:8080/photographer_profile/uploadProfilePic/${photographerId}`, formData)
+    axios.post(`${config.serverUrl}/photographer_profile/uploadProfilePic/${photographerId}`, formData,{
+      headers: {
+      Authorization: `Bearer ${token}`
+      }})
       .then(() => {
         setProfilePic(URL.createObjectURL(file));
         alert('Profile picture updated successfully!');
@@ -93,7 +111,11 @@ const PhotographerProfile = () => {
   };
 
   const handleBioSave = () => {
-    axios.post(`http://localhost:8080/photographer_profile/updateBio/${photographerId}`, { bio })
+    const token = sessionStorage.getItem('token');
+    axios.post(`${config.serverUrl}/photographer_profile/updateBio/${photographerId}`, { bio },{
+      headers: {
+      Authorization: `Bearer ${token}`
+      }})
       .then(() => {
         alert('Bio updated successfully!');
         setEditingBio(false);
@@ -105,7 +127,11 @@ const PhotographerProfile = () => {
   };
 
   const handleExperienceSave = () => {
-    axios.post(`http://localhost:8080/photographer_profile/updateExperienceLevel/${photographerId}`, { experienceLevel: experience })
+    const token = sessionStorage.getItem('token');
+    axios.post(`${config.serverUrl}/photographer_profile/updateExperienceLevel/${photographerId}`, { experienceLevel: experience },{
+      headers: {
+      Authorization: `Bearer ${token}`
+      }})
       .then(() => {
         alert('Experience level updated successfully!');
         setEditingExperience(false);
@@ -117,10 +143,14 @@ const PhotographerProfile = () => {
   };
 
   const handleCategorySelection = (categoryId) => {
-    axios.post('http://localhost:8080/photographer/addcategory', {
+    const token = sessionStorage.getItem('token');
+    axios.post(`${config.serverUrl}/photographer/addcategory`, {
       photographerId: photographerId,
       categoryId: categoryId
-    })
+    },{
+      headers: {
+      Authorization: `Bearer ${token}`
+      }})
     .then(() => {
       alert('Category added successfully!');
     })
@@ -131,12 +161,16 @@ const PhotographerProfile = () => {
   };
 
   const handleServiceSubmit = () => {
-    axios.post('http://localhost:8080/services', {
+    const token = sessionStorage.getItem('token');
+    axios.post(`${config.serverUrl}/services`, {
       photographerid: photographerId,
       categoryid: category,
       price: price,
       description: services
-    })
+    },{
+      headers: {
+      Authorization: `Bearer ${token}`
+      }})
     .then(() => {
       alert('Service added successfully!');
       setEditingService(false);
@@ -151,10 +185,14 @@ const PhotographerProfile = () => {
 
 
   const addCategoryToPhotographer = () =>{
-    axios.post('http://localhost:8080/photographer/addcategory',{
+    const token = sessionStorage.getItem('token');
+    axios.post(`${config.serverUrl}/photographer/addcategory`,{
       pid: photographerId,
       cid: category
-    })
+    },{
+      headers: {
+      Authorization: `Bearer ${token}`
+      }})
     .then(()=>{
       console.log("category added to photographer");
     })
@@ -162,7 +200,12 @@ const PhotographerProfile = () => {
 
   const handleButtonClick = () => {
     addCategoryToPhotographer();
-    handleServiceSubmit();
+
+    setTimeout(()=>{
+      handleServiceSubmit();
+
+    },1000)
+    
   };
   
 

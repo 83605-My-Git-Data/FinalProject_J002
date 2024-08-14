@@ -14,7 +14,10 @@ const PhotographerCategories = () => {
                 const decodedToken = jwtDecode(token);
                 const photographerId = decodedToken.id;
 
-                const response = await axios.get(`http://localhost:8080/photographer/categories/${photographerId}`);
+                const response = await axios.get(`http://localhost:8080/photographer/categories/${photographerId}`,{
+                    headers: {
+                    Authorization: `Bearer ${token}`
+                    }});
                 setCategories(response.data);
             } catch (error) {
                 console.error('Error fetching categories:', error);
@@ -48,6 +51,7 @@ const PhotographerCategories = () => {
             await axios.post(`http://localhost:8080/images/${photographerId}/${selectedCategory}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`
                 },
             });
 
